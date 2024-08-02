@@ -1,5 +1,29 @@
 import React from 'react';
-import { View, Text, TextInput, Image, ScrollView, Button, StyleSheet, Alert, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, Image, ScrollView, Button, StyleSheet, Alert, TouchableOpacity, TextInputProps } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+
+
+// Define la interfaz para las props del componente InputWithIcon
+interface InputWithIconProps extends TextInputProps {
+    iconName: React.ComponentProps<typeof Ionicons>['name'];
+    placeholder: string;
+}
+
+// Componente InputWithIcon usando la interfaz
+const InputWithIcon: React.FC<InputWithIconProps> = ({ iconName, placeholder, ...props }) => {
+    return (
+        <View style={styles.inputContainer}>
+            <Ionicons name={iconName} size={24} color="gray" style={styles.icon} />
+            <TextInput
+                style={styles.input}
+                placeholder={placeholder}
+                {...props}
+            />
+        </View>
+    );
+};
+
+
 
 function Login (){
     
@@ -18,18 +42,19 @@ return (
 
     <View style={styles.form}>
     
-        <TextInput
-            style={styles.input}
+        <InputWithIcon
+            iconName="mail-outline"
             placeholder="Correo electronico"
-           
             // value={username}
             // onChangeText={setUsername}
         />
-        <TextInput
-            style={styles.input}
+
+        <InputWithIcon
+            iconName="lock-closed-outline"
             placeholder="Contraseña"
             // value={password}
             // onChangeText={setPassword}
+            secureTextEntry={true}
         />
     </View>
 
@@ -99,17 +124,38 @@ form:{
     paddingTop:40,
     borderColor:'rgba(254, 151, 151, 0.82)',
 },
-input: {
-    height: 50,
-    borderColor: 'gray',
-    backgroundColor:'#ffffff',
-    borderRadius:25,
+inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
     borderWidth: 1,
+    borderColor: 'gray',
+    backgroundColor: '#ffffff',
+    borderRadius: 25,
     marginBottom: 30,
-    paddingHorizontal: 50,
-    paddingVertical: 5,
+    paddingHorizontal: 10,
     elevation: 6,
 },
+icon: {
+    marginRight: 10,
+    marginLeft: 10,
+},
+input: {
+    flex: 1,
+    height: 50,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+},
+// input: {
+//     height: 50,
+//     borderColor: 'gray',
+//     backgroundColor:'#ffffff',
+//     borderRadius:25,
+//     borderWidth: 1,
+//     marginBottom: 30,
+//     paddingHorizontal: 50,
+//     paddingVertical: 5,
+//     elevation: 6,
+// },
 buttonContainer: {
     alignItems: 'center',
     marginTop:20,
