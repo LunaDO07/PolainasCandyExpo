@@ -1,29 +1,7 @@
 import React from 'react';
 import { View, Text, TextInput, Image, ScrollView, Button, StyleSheet, Alert, TouchableOpacity, TextInputProps } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-
-
-// Define la interfaz para las props del componente InputWithIcon
-interface InputWithIconProps extends TextInputProps {
-    iconName: React.ComponentProps<typeof Ionicons>['name'];
-    placeholder: string;
-}
-
-// Componente InputWithIcon usando la interfaz
-const InputWithIcon: React.FC<InputWithIconProps> = ({ iconName, placeholder, ...props }) => {
-    return (
-        <View style={styles.inputContainer}>
-            <Ionicons name={iconName} size={24} color="gray" style={styles.icon} />
-            <TextInput
-                style={styles.input}
-                placeholder={placeholder}
-                {...props}
-            />
-        </View>
-    );
-};
-
-
+import InputWithIcon from '../../components/InputWithIcon';
 
 function Login (){
     
@@ -60,7 +38,9 @@ return (
 
     <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Iniciar sesión</Text>
+            <View style={styles.innerButton}>
+                <Text style={styles.buttonText}>Aceptar</Text>
+            </View>
         </TouchableOpacity>
     </View>
 
@@ -124,54 +104,39 @@ form:{
     paddingTop:40,
     borderColor:'rgba(254, 151, 151, 0.82)',
 },
-inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: 'gray',
-    backgroundColor: '#ffffff',
-    borderRadius: 25,
-    marginBottom: 30,
-    paddingHorizontal: 10,
-    elevation: 6,
-},
-icon: {
-    marginRight: 10,
-    marginLeft: 10,
-},
-input: {
-    flex: 1,
-    height: 50,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-},
-// input: {
-//     height: 50,
-//     borderColor: 'gray',
-//     backgroundColor:'#ffffff',
-//     borderRadius:25,
-//     borderWidth: 1,
-//     marginBottom: 30,
-//     paddingHorizontal: 50,
-//     paddingVertical: 5,
-//     elevation: 6,
-// },
+
 buttonContainer: {
     alignItems: 'center',
     marginTop:20,
     marginBottom: 60,
 },
 button: {
-    backgroundColor: '#060606',
-    padding: 10, 
-    borderRadius: 25,
-    width: 200, 
-    elevation: 10,
+    width: 170,
+    height: 62,
+    borderRadius: 20,  // Rounded corners
+    backgroundColor: '#ffffff',
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 6, // Shadow for Android
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.4,
+    shadowRadius: 7,
+},
+innerButton: {
+    width: 170,
+    height: 45,
+    borderRadius: 20,
+    backgroundColor: '#000000',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: 'rgb(62, 62, 62)',
+    borderWidth: 1,
 },
 buttonText: {
-    color: '#FFF',
+    color: 'white',
     fontSize: 16,
-    textAlign:'center',
+    fontWeight: '600',
+    
 },
 pie:{
     flex:0.4,
