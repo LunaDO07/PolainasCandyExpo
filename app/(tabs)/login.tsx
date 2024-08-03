@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, TextInput, Image, ScrollView, Button, StyleSheet, Alert, TouchableOpacity, TextInputProps } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import InputWithIcon from '../../components/InputWithIcon';
 
 function Login (){
@@ -27,13 +26,17 @@ return (
             // onChangeText={setUsername}
         />
 
-        <InputWithIcon
+    <View>
+    <InputWithIcon
             iconName="lock-closed-outline"
             placeholder="Contraseña"
             // value={password}
             // onChangeText={setPassword}
             secureTextEntry={true}
+            
         />
+    </View>
+
     </View>
 
     <View style={styles.buttonContainer}>
@@ -43,15 +46,13 @@ return (
             </View>
         </TouchableOpacity>
     </View>
+    
+        <Text style={styles.registrotext}> ¿No tienes una cuenta?  
+            <Text  style={styles.registrocolor}> Registrate</Text> 
+        </Text> 
 
-    <View style={styles.pie}>
-        <Text style={styles.registrotext}> ¿No tienes una cuenta? <Text  style={styles.registrocolor}>Registrate</Text> </Text> 
-        
-    </View>
 </ScrollView>
-);
-}
-
+);}
 const styles = StyleSheet.create({
 container: {
     flex: 1,
@@ -59,9 +60,9 @@ container: {
 },
 titulo:{
 textAlign:'center',
-paddingTop:20,
+paddingTop:35,
 fontWeight:'600',
-fontSize:25,
+fontSize:28,
 color:'#ffffff',
 },
 header:{
@@ -107,26 +108,25 @@ form:{
 
 buttonContainer: {
     alignItems: 'center',
-    marginTop:20,
-    marginBottom: 60,
+    marginTop: 10,
+    marginBottom: 40,
 },
 button: {
     width: 170,
-    height: 62,
-    borderRadius: 20,  // Rounded corners
+    height: 54,
+    borderRadius: 20,
     backgroundColor: '#ffffff',
-    justifyContent: 'center',
-    alignItems: 'center',
-    elevation: 6, // Shadow for Android
-    shadowOffset: { width: 0, height: 2 },
+    elevation: 6,
+    shadowOffset: { width: 0, height: 6 }, // Mueve la sombra hacia abajo
     shadowOpacity: 0.4,
     shadowRadius: 7,
+    marginBottom: -10, // Mueve el botón hacia arriba
 },
 innerButton: {
     width: 170,
     height: 45,
     borderRadius: 20,
-    backgroundColor: '#000000',
+    backgroundColor: '#292929',
     justifyContent: 'center',
     alignItems: 'center',
     borderColor: 'rgb(62, 62, 62)',
@@ -136,10 +136,6 @@ buttonText: {
     color: 'white',
     fontSize: 16,
     fontWeight: '600',
-    
-},
-pie:{
-    flex:0.4,
 },
 registrotext:{
     textAlign:'center',
