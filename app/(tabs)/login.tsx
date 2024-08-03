@@ -8,7 +8,7 @@ return (
 <ScrollView style={styles.container}>
 
     <View style={styles.header}>
-        <Text style={styles.titulo}> Inicio de sesión</Text>
+        <Text style={styles.titulo}> Inicio de Sesión</Text>
         <View style={styles.line} />      
         <View style={styles.logo}>
             <Image source={require('../../assets/images/2.png')} style={styles.img} />
@@ -47,7 +47,7 @@ return (
         </TouchableOpacity>
     </View>
     
-        <Text style={styles.registrotext}> ¿No tienes una cuenta?  
+        <Text style={styles.registrotext}> ¿No tienes cuenta?  
             <Text  style={styles.registrocolor}> Registrate</Text> 
         </Text> 
 
@@ -62,8 +62,9 @@ titulo:{
 textAlign:'center',
 paddingTop:35,
 fontWeight:'600',
-fontSize:28,
+fontSize:30,
 color:'#ffffff',
+fontFamily: 'Josefbold',
 },
 header:{
     flex:1,
@@ -97,18 +98,18 @@ img:{
 name: {
     fontSize: 22,
     textAlign: 'center',
-    fontWeight:'600',
-    color:'#464646',
+    color:'#5A5A5A',
+    fontFamily: 'Lailasemi',
 },
 form:{
-    paddingHorizontal:35,
+    paddingHorizontal:37,
     paddingTop:40,
     borderColor:'rgba(254, 151, 151, 0.82)',
 },
 
 buttonContainer: {
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: 25,
     marginBottom: 40,
 },
 button: {
@@ -120,7 +121,6 @@ button: {
     shadowOffset: { width: 0, height: 6 }, // Mueve la sombra hacia abajo
     shadowOpacity: 0.4,
     shadowRadius: 7,
-    marginBottom: -10, // Mueve el botón hacia arriba
 },
 innerButton: {
     width: 170,
@@ -135,13 +135,13 @@ innerButton: {
 buttonText: {
     color: 'white',
     fontSize: 16,
-    fontWeight: '600',
+    fontFamily: 'Josefinmedium',
 },
 registrotext:{
     textAlign:'center',
     fontSize:15,
-    color:'#000000'
-    
+    color:'#000000',
+    fontFamily: 'Josefinmedium',    
 },
 registrocolor:{
     color:'#113696',

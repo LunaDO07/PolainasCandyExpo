@@ -39,9 +39,10 @@ const styles = StyleSheet.create({
     },
     input: {
         flex: 1,
-        height: 50,
+        height: 45,
         paddingHorizontal: 10,
         paddingVertical: 5,
+        fontSize:15,
     },
 });
 

@@ -14,6 +14,12 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    Laila: require('../assets/fonts/Laila-Regular.ttf'),
+    Lailabold: require('../assets/fonts/Laila-Bold.ttf'),
+    Lailasemi: require('../assets/fonts/Laila-SemiBold.ttf'),
+    Josefinli: require('../assets/fonts/JosefinSans-Light.ttf'),
+    Josefinmedium: require('../assets/fonts/JosefinSans-Medium.ttf'),
+    Josefbold: require('../assets/fonts/JosefinSans-SemiBold.ttf'),
   });
 
   useEffect(() => {
