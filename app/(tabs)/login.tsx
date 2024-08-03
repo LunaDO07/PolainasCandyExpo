@@ -9,7 +9,7 @@ return (
 <ScrollView style={styles.container}>
 
     <View style={styles.header}>
-        <Text style={styles.titulo}> Inicio de sesion</Text>
+        <Text style={styles.titulo}> Inicio de sesión</Text>
         <View style={styles.line} />      
         <View style={styles.logo}>
             <Image source={require('../../assets/images/2.png')} style={styles.img} />
@@ -55,7 +55,7 @@ return (
 const styles = StyleSheet.create({
 container: {
     flex: 1,
-    backgroundColor:'#ffffff',
+    backgroundColor:'#fefefe',
 },
 titulo:{
 textAlign:'center',

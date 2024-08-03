@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         marginBottom: 30,
         paddingHorizontal: 10,
-        elevation: 6,
+        elevation: 3,
     },
     icon: {
         marginRight: 10,
