@@ -17,27 +17,46 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
+          title: 'IndexN',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'journal' : 'journal-outline'} color={color} />
+          ),
+        }}
+      />
+
+
+      <Tabs.Screen
+        name="login"
+        options={{
+          title: 'login',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'person' : 'person-outline'} color={color} />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="indexCliente"
+        options={{
+          title: 'Inicio',
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
           ),
         }}
       />
 
-
 <Tabs.Screen
-        name="login"
+        name="categorias"
         options={{
-          title: 'login',
+          title: 'Categorias',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'person' : 'person'} color={color} />
+            <TabBarIcon name={focused ? 'heart-half' : 'heart-outline'} color={color} />
           ),
         }}
       />
 
-    </Tabs>
 
-    
+    </Tabs>
 
     
   );

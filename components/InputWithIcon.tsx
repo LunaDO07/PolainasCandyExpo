@@ -9,29 +9,29 @@ interface InputWithIconProps extends TextInputProps {
 }
 
 const InputWithIcon: React.FC<InputWithIconProps> = ({ iconName, placeholder, isPassword = false, ...props }) => {
-    const [showPassword, setShowPassword] = useState(false);
+const [showPassword, setShowPassword] = useState(false);
 
-    return (
-        <View style={styles.inputContainer}>
-            <Ionicons name={iconName} size={24} color="gray" style={styles.icon} />
-            <TextInput
-                style={styles.input}
-                placeholder={placeholder}
-                secureTextEntry={isPassword && !showPassword}
-                {...props}
-            />
-            {isPassword && (
-                <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-                    <Ionicons
-                        name={showPassword ? "eye-off-outline" : "eye-outline"}
-                        size={24}
-                        color="gray"
-                        style={styles.icon}
-                    />
-                </TouchableOpacity>
-            )}
-        </View>
-    );
+return (
+    <View style={styles.inputContainer}>
+        <Ionicons name={iconName} size={24} color="gray" style={styles.icon} />
+        <TextInput
+            style={styles.input}
+            placeholder={placeholder}
+            secureTextEntry={isPassword && !showPassword}
+            {...props}
+        />
+        {isPassword && (
+            <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+                <Ionicons
+                    name={showPassword ? "eye-off-outline" : "eye-outline"}
+                    size={24}
+                    color="gray"
+                    style={styles.icon}
+                />
+            </TouchableOpacity>
+        )}
+    </View>
+);
 };
 
 const styles = StyleSheet.create({

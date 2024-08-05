@@ -69,7 +69,7 @@ function Login() {
                 </TouchableOpacity>
             </View>
 
-            <Text style={styles.registrotext}>¿No tienes cuenta? <Text style={styles.registrocolor}>Regístrate</Text></Text>
+            <Text style={styles.registrotext}>¿No tienes cuenta?<Text style={styles.registrocolor}>Regístrate</Text></Text>
 
             <CustomAlert
                 visible={alertVisible}
@@ -83,7 +83,7 @@ function Login() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fefefe',
+        backgroundColor: '#f7f7f7',
     },
     titulo: {
         textAlign: 'center',
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     },
     button: {
         width: 170,
-        height: 54,
+        height: 53,
         borderRadius: 20,
         backgroundColor: '#ffffff',
         elevation: 6,
