@@ -5,7 +5,7 @@ import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity, Alert } fr
 function Categorias() {
 return (
     <View>
-        <Text>Bienvenido a las categorias jsjsj :D</Text>
+        <Text>Bienvenido a las categorias jsjsj :D xddd</Text>
     </View>
 );
 }

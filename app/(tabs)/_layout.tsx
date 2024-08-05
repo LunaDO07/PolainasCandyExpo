@@ -14,7 +14,7 @@ export default function TabLayout() {
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
       }}>
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="index"
         options={{
           title: 'IndexN',
@@ -22,8 +22,7 @@ export default function TabLayout() {
             <TabBarIcon name={focused ? 'journal' : 'journal-outline'} color={color} />
           ),
         }}
-      />
-
+      /> */}
 
       <Tabs.Screen
         name="login"
