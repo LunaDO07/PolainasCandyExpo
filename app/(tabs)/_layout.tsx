@@ -1,9 +1,9 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { FontAwesome } from '@expo/vector-icons';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -14,49 +14,97 @@ export default function TabLayout() {
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
       }}>
-      {/* <Tabs.Screen
+      <Tabs.Screen
         name="index"
         options={{
-          title: 'IndexN',
+          title: 'Banner',
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name={focused ? 'journal' : 'journal-outline'} color={color} />
           ),
         }}
-      /> */}
-
-      <Tabs.Screen
-        name="login"
-        options={{
-          title: 'login',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'person' : 'person-outline'} color={color} />
-          ),
-        }}
       />
 
-      <Tabs.Screen
-        name="indexCliente"
-        options={{
-          title: 'Inicio',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
-        }}
-      />
+    <Tabs.Screen
+      name="login"
+      options={{
+        title: 'login',
+        tabBarIcon: ({ color, focused }) => (
+          <TabBarIcon name={focused ? 'person-circle-sharp' : 'person-circle-outline'} color={color} />
+        ),
+      }}
+    />
+    <Tabs.Screen
+      name="registro"
+      options={{
+        title: 'Registro',
+        tabBarIcon: ({ color, focused }) => (
+          <TabBarIcon name={focused ? 'person-add' : 'person-add-outline'} color={color} />
+        ),
+      }}
+    />
+
+    <Tabs.Screen
+      name="sucursales"
+      options={{
+        title: 'Admin',
+        tabBarIcon: ({ color, focused }) => (
+          <TabBarIcon name={focused ? 'person' : 'person-outline'} color={color} />
+        ),
+      }}
+    />
+
+    <Tabs.Screen
+      name="indexCliente"
+      options={{
+        title: 'Inicio',
+        tabBarIcon: ({ color, focused }) => (
+          <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+        ),
+      }}
+    />
+
+    <Tabs.Screen
+      name="categorias"
+      options={{
+        title: 'Categorias',
+        tabBarIcon: ({ color, focused }) => (
+          <TabBarIcon name={focused ? 'heart-half' : 'heart-outline'} color={color} />
+        ),
+      }}
+    />
+
+    <Tabs.Screen
+      name="cart"
+      options={{
+        title: 'Carrito',
+        tabBarIcon: ({ color, focused }) => (
+          <TabBarIcon name={focused ? 'cart' : 'cart-outline'} color={color} />
+        ),
+      }}
+    />
+
+    <Tabs.Screen
+      name="datosUser"
+      options={{
+        title: 'datos',
+        tabBarIcon: ({ color, focused }) => (
+          <TabBarIcon name={focused ? 'accessibility' : 'accessibility-outline'} color={color} />
+        ),
+      }}
+    />
 
 <Tabs.Screen
-        name="categorias"
-        options={{
-          title: 'Categorias',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'heart-half' : 'heart-outline'} color={color} />
-          ),
-        }}
-      />
+      name="ticket"
+      options={{
+        title: 'ticket',
+        tabBarIcon: ({ color, focused }) => (
+          <TabBarIcon name={focused ? 'ticket' : 'ticket-outline'} color={color} />
+        ),
+      }}
+    />
+
 
 
     </Tabs>
-
-    
   );
 }

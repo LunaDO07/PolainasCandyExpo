@@ -15,15 +15,15 @@ function Login() {
             if (!email) missingFields.push("el correo electrónico");
             if (!password) missingFields.push("la contraseña");
 
-            const formattedMessage = (
-                <Text style={styles.alertMessage}>
-                    Ingresa {missingFields.map((field, index) => (
-                        <Text key={field} style={{ fontWeight: 600 }}>
-                            {field}{index < missingFields.length - 1 ? ' y ' : ''}
-                        </Text>
-                    ))} para continuar
+    const formattedMessage = (
+        <Text style={styles.alertMessage}>
+            Ingresa {missingFields.map((field, index) => (
+                <Text key={field} style={{ fontWeight: 600 }}>
+                    {field}{index < missingFields.length - 1 ? ' y ' : ''}
                 </Text>
-            );
+            ))} para continuar
+        </Text>
+    );
 
             setAlertMessage(formattedMessage);
             setAlertVisible(true);

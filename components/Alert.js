@@ -9,7 +9,7 @@ return (
         <View style={styles.overlay}>
             <View style={styles.alertBox}>
             <View style={styles.header}>
-                <Ionicons name="alert-circle-outline" size={30} color="rgb(40, 40, 40)" />
+                <Ionicons name="alert-circle-outline" size={40} color="rgb(40, 40, 40)" />
                 <Text style={styles.headerText}>Datos Incompletos</Text>
             </View>
 
@@ -17,7 +17,7 @@ return (
                 {message}
             </View>
             <TouchableOpacity onPress={onClose} style={styles.button}>
-                <Text style={styles.buttonText}>Cerrar</Text>
+                <Text style={styles.buttonText}>OK</Text>
             </TouchableOpacity>
             </View>
         </View>
@@ -34,7 +34,7 @@ overlay: {
 },
 alertBox: {
     width: 350,
-    padding: 30,
+    padding: 20,
     backgroundColor: 'white',
     borderRadius: 15,
     alignItems: 'center',
@@ -63,9 +63,11 @@ alertMessageContainer: {
 alertMessage: {
     fontSize: 16,
     textAlign: 'center',
+   
 },
 button: {
     backgroundColor: '#ffa8a8a0',
+    // backgroundColor:'#E25656',
     paddingVertical: 7,
     paddingHorizontal: 30,
     borderRadius: 30,

@@ -19,6 +19,7 @@ export default function RootLayout() {
     Lailasemi: require('../assets/fonts/Laila-SemiBold.ttf'),
     Josefinli: require('../assets/fonts/JosefinSans-Light.ttf'),
     Josefinmedium: require('../assets/fonts/JosefinSans-Medium.ttf'),
+    Josefinreg: require('../assets/fonts/JosefinSans-Regular.ttf'),
     Josefbold: require('../assets/fonts/JosefinSans-SemiBold.ttf'),
   });
 
