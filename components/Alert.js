@@ -66,12 +66,12 @@ alertMessage: {
    
 },
 button: {
-    backgroundColor: '#ffa8a8a0',
+    backgroundColor: '#ffa8a8ad',
     // backgroundColor:'#E25656',
     paddingVertical: 7,
     paddingHorizontal: 30,
-    borderRadius: 30,
-    borderColor: 'rgb(255, 126, 126)',
+    borderRadius: 10,
+    borderColor: 'rgb(242, 112, 112)',
     borderWidth: 1,
 },
 buttonText: {

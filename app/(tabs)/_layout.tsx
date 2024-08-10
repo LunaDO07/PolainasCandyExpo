@@ -48,7 +48,7 @@ export default function TabLayout() {
       options={{
         title: 'Admin',
         tabBarIcon: ({ color, focused }) => (
-          <TabBarIcon name={focused ? 'person' : 'person-outline'} color={color} />
+          <TabBarIcon name={focused ? 'storefront' : 'storefront-outline'} color={color} />
         ),
       }}
     />
@@ -88,7 +88,7 @@ export default function TabLayout() {
       options={{
         title: 'datos',
         tabBarIcon: ({ color, focused }) => (
-          <TabBarIcon name={focused ? 'accessibility' : 'accessibility-outline'} color={color} />
+          <TabBarIcon name={focused ? 'checkmark-circle' : 'checkmark-circle-outline'} color={color} />
         ),
       }}
     />

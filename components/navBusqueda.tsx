@@ -1,42 +1,64 @@
-import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+    import React, { useRef } from 'react';
+    import { View, Text, TextInput, TouchableOpacity, StyleSheet, DrawerLayoutAndroid } from 'react-native';
+    import { FontAwesome } from '@expo/vector-icons';
+    import Ionicons from '@expo/vector-icons/Ionicons';
 
-const NavSinBusqueda = () => {
-return (
-<View style={styles.navbar}>
-    {/* Título */}
-    <View style={styles.titleContainer}>
-        <Text style={styles.navbarTitle}>Polainas Candys</Text>
-    </View>
+    const NavSinBusqueda = () => {
+    // Define el tipo de referencia
+    const drawer = useRef<DrawerLayoutAndroid>(null);
 
-    {/* Menú, Barra de Búsqueda y Carrito de Compras */}
-    <View style={styles.menuContainer}>
-        <FontAwesome name="bars" size={24} color="#FFF" style={styles.menuButton} />
-        
-        <View style={styles.searchContainer}>
-        <FontAwesome name="search" size={24} color="#666" style={styles.searchIcon} />
-        <TextInput
-            style={styles.searchInput}
-            placeholder="Buscar dulces"
-            placeholderTextColor="#666"
-        />
+    const navigationView = () => (
+        <View style={styles.drawerContainer}>
+            <View style={{height:160, backgroundColor:'rgb(0, 0, 0)'}}></View>
+                <Text style={styles.drawerItem}>Inicio</Text>
+                <Text style={styles.drawerItem}>Datos de usuario</Text>
+                <Text style={styles.drawerItem}>Carrito</Text>
         </View>
-        
-        <View style={styles.cartContainer}>
-        <FontAwesome name="shopping-cart" size={30} color="#FFF" />
-        <View style={styles.cartBadge}>
-            <Text style={styles.cartBadgeText}>1</Text>
+    );
+
+    return (
+        <DrawerLayoutAndroid
+        ref={drawer}
+        drawerWidth={300}
+        drawerPosition="left"
+        renderNavigationView={navigationView}
+        >
+
+        <View style={styles.navbar}>
+            <View style={styles.titleContainer}>
+            <Text style={styles.navbarTitle}>POLAINA'S CANDYS</Text>
+            </View>
+
+            <View style={styles.menuContainer}>
+            <TouchableOpacity onPress={() => drawer.current?.openDrawer()}>
+                <FontAwesome name="bars" size={24} color="#FFF" style={styles.menuButton} />
+            </TouchableOpacity>
+            
+            <View style={styles.searchContainer}>
+                <Ionicons name="search-outline" size={24} color="#666" style={styles.searchIcon} />
+                <TextInput
+                style={styles.searchInput}
+                placeholder="Buscar dulces"
+                placeholderTextColor="#666"
+                />
+            </View>
+
+            <View style={styles.cartContainer}>
+                <FontAwesome name="shopping-cart" size={30} color="#FFF" />
+                <View style={styles.cartBadge}>
+                <Text style={styles.cartBadgeText}>1</Text>
+                </View>
+            </View>
+            </View>
         </View>
-        </View>
-    </View>
-</View>
-);
-}
+        </DrawerLayoutAndroid>
+    );
+    };
+
 
 const styles = StyleSheet.create({
 navbar: {
-    marginTop:20,
+    marginTop:30,
     backgroundColor: '#000000',
     paddingVertical: 15,
     paddingHorizontal: 20,
@@ -45,12 +67,12 @@ navbar: {
 },
 titleContainer: {
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: 15,
 },
 navbarTitle: {
     fontSize: 22,
-    fontWeight: 'bold',
     color: '#ffffff',
+    fontFamily: 'Lailasemi',
 },
 menuContainer: {
     flexDirection: 'row',
@@ -62,10 +84,10 @@ menuButton: {
 searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FFF',
+    backgroundColor: '#ffffff',
     borderRadius: 20,
     flex: 1,
-    marginHorizontal: 10,
+    marginHorizontal: 15,
     paddingHorizontal: 10,
     borderWidth: 1,
     borderColor: '#CCC',
@@ -73,10 +95,12 @@ searchContainer: {
 searchInput: {
     backgroundColor: '#FFF',
     borderRadius: 20,
-    paddingHorizontal: 10,
+    paddingHorizontal: 20,
     paddingVertical: 5,
     color: '#333',
     flex: 1,
+    fontFamily: 'Josefinli',
+    fontSize:17,
 },
 searchIcon: {
     marginLeft: 10,
@@ -100,6 +124,20 @@ cartBadgeText: {
     fontSize: 12,
     fontWeight: 'bold',
 },
+drawerContainer: {
+    flex: 1,
+    backgroundColor: '#ffffff',  
+},
+drawerItem: {
+    fontSize: 18,
+    paddingLeft:30,
+    paddingVertical:10,
+    fontFamily: 'Laila',
+},
+headermenu:{
+    backgroundColor:'rgb(0, 0, 0)',
+}
+
 });
 
 export default NavSinBusqueda;

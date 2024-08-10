@@ -5,20 +5,7 @@ import { FontAwesome } from '@expo/vector-icons';
 const NavSinBusqueda = () => {
 // Datos de ejemplo
 const ticketData = {
-    idCompra: '12345',
-    fechaHora: '2024-08-04 14:30',
-    idSucursal: '001',
-    nombreSucursal: 'Sucursal Principal',
-    direccionSucursal: 'Calle Falsa 123, Ciudad, Estado',
-    productos: [
-    { nombre: 'Producto 1', cantidad: 2, precioUnitario: 10.00, precioTotal: 20.00 },
-    { nombre: 'Producto 2', cantidad: 1, precioUnitario: 15.00, precioTotal: 15.00 },
-    ],
     articulosTotales: 4,
-    subtotal: 35.00,
-    iva: 5.00,
-    costoEnvio: 2.00,
-    total: 42.00,
 };
 
 

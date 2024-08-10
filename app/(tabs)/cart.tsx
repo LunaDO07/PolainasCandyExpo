@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; 
 import NavSinBusqueda from '../../components/navSinBusqueda';
+import NavBusqueda from '../../components/navBusqueda';
 
 
 interface CartItemType {
@@ -27,13 +28,13 @@ const CartItem: React.FC<{
     <View style={styles.actionsContainer}>
         <View style={styles.quantityContainer}>
             <TouchableOpacity onPress={onAdd} style={styles.quantityButton}>
-            <Text style={styles.quantityButtonText}>+</Text>
+                <Text style={styles.quantityButtonText}>+</Text>
             </TouchableOpacity>
-            <Text style={styles.quantityText}>{item.quantity}</Text>
+                <Text style={styles.quantityText}>{item.quantity}</Text>
             <TouchableOpacity onPress={onRemove} style={styles.quantityButton}>
-            <Text style={styles.quantityButtonText}>-</Text>
+                <Text style={styles.quantityButtonText}>-</Text>
             </TouchableOpacity>
-            </View>
+                </View>
             <TouchableOpacity onPress={onDelete} style={styles.deleteButton}>
                 <Ionicons name="trash-outline" size={24} color="#666" />
             </TouchableOpacity>
@@ -46,15 +47,7 @@ const Cart: React.FC = () => {
 const cartItems: CartItemType[] = [
     { id: 1, name: 'Picafresas', price: 10.00, image: 'https://loveveg.mx/app/uploads/2021/11/Mesa-de-trabajo-58-711x1024.jpg', quantity: 1 },
     { id: 2, name: 'Aciduladito', price: 20.00, image: 'https://http2.mlstatic.com/D_NQ_NP_787132-MLU73865457966_012024-O.webp', quantity: 2 },
-    { id: 3, name: 'Aciduladito', price: 20.00, image: 'https://http2.mlstatic.com/D_NQ_NP_787132-MLU73865457966_012024-O.webp', quantity: 3 },
-    { id: 4, name: 'Aciduladito', price: 20.00, image: 'https://http2.mlstatic.com/D_NQ_NP_787132-MLU73865457966_012024-O.webp', quantity: 4 },
-    { id: 5, name: 'Aciduladito', price: 20.00, image: 'https://http2.mlstatic.com/D_NQ_NP_787132-MLU73865457966_012024-O.webp', quantity: 5 },
-    { id: 6, name: 'Aciduladito', price: 20.00, image: 'https://http2.mlstatic.com/D_NQ_NP_787132-MLU73865457966_012024-O.webp', quantity: 6 },
-    { id: 7, name: 'Aciduladito', price: 20.00, image: 'https://http2.mlstatic.com/D_NQ_NP_787132-MLU73865457966_012024-O.webp', quantity: 7 },
-    { id: 8, name: 'Aciduladito', price: 20.00, image: 'https://http2.mlstatic.com/D_NQ_NP_787132-MLU73865457966_012024-O.webp', quantity: 8 },
-    { id: 9, name: 'Aciduladito', price: 20.00, image: 'https://http2.mlstatic.com/D_NQ_NP_787132-MLU73865457966_012024-O.webp', quantity: 9 },
-    { id: 10, name: 'Aciduladito', price: 20.00, image: 'https://http2.mlstatic.com/D_NQ_NP_787132-MLU73865457966_012024-O.webp', quantity:10},
-];
+  ];
 
 const handleAdd = (id: number) => {
     console.log(`Agregar más del producto ${id}`);
@@ -109,7 +102,7 @@ container: {
     marginTop:30,
 },
 cartContainer: {
-    padding: 15,
+    marginTop:20,
 },
 cartItem: {
     flexDirection: 'row',
@@ -118,7 +111,7 @@ cartItem: {
     paddingHorizontal: 10, // Añade padding horizontal para separar el contenido de los bordes
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
-    backgroundColor: '#fff',
+    backgroundColor: '#ffffff',
     marginBottom: 10,
     borderRadius: 5,
     elevation: 1,
@@ -127,6 +120,7 @@ productImage: {
     width: 80,
     height: 80,
     borderRadius: 5,
+    marginLeft:10,
 },
 itemDetails: {
     flex: 1,
@@ -150,40 +144,40 @@ quantityContainer: {
     alignItems: 'center',
 },
 quantityButton: {
-    backgroundColor: '#ddd',
+    backgroundColor: '#ffffff',
     borderRadius: 5,
-    padding: 5,
+    padding: 13,
     marginHorizontal: 5,
 },
 quantityButtonText: {
-    fontSize: 18,
+    fontSize: 20,
     color: '#333',
 },
 quantityText: {
     fontSize: 16,
-    color: '#333',
+    color: '#1c5962',
 },
 deleteButton: {
-    marginLeft: 15,
-    backgroundColor: '#f0f0f0', // Gris claro
+    marginRight: 10,
+    backgroundColor: '#ffffff', // Gris claro
     padding: 5,
     borderRadius: 5,
 },
 footer: {
     padding: 15,
-    backgroundColor: '#fff',
+    backgroundColor: '#ffffff',
     borderTopWidth: 1,
     borderTopColor: '#ddd',
     alignItems: 'center',
 },
 totalText: {
     fontSize: 18,
-    fontWeight: 'bold',
     color: '#333',
     marginBottom: 10,
+    fontFamily:'Josefbold',
 },
 checkoutButton: {
-    backgroundColor: '#FF862F', 
+    backgroundColor: '#ffa526', 
     borderRadius: 5,
     paddingVertical: 10,
     paddingHorizontal: 50,
@@ -191,8 +185,8 @@ checkoutButton: {
 },
 checkoutButtonText: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: '#fff',
+    color: '#000000',
+    fontFamily:'Laila',
 },
 });
 

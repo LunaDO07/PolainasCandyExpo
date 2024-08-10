@@ -186,7 +186,7 @@ return (
         >
         <View style={styles.modalContainer}>
             <View style={styles.modalContent}>
-            <Ionicons name="alert-circle" size={40} color="red" />
+            <Ionicons name="alert-circle-outline" size={40} color="#000000" />
                 <Text style={styles.modalText}>Hay campos vacios, revisa tu informacion para continuar.</Text>
                 <Pressable
                 style={styles.modalButton}
@@ -368,7 +368,7 @@ modalButton: {
     marginTop: 15,
     padding: 10,
     paddingHorizontal:40,
-    backgroundColor: '#E25656',
+    backgroundColor: '#000000',
     borderRadius: 10,
 },
 modalButtonText: {

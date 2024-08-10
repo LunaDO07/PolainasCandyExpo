@@ -6,13 +6,14 @@ import NavBusqueda from '../../components/navBusqueda';
 function IndexCliente() {
 return (
 <View style={styles.container}>
-    <NavBusqueda/>
+
+<NavBusqueda/>
     <View style={styles.imagenes}>
         {/* aregar carrucel de imagenes*/}
     </View>
     <View style={styles.category}>
         <View style={styles.catedec}/>
-        <Text>Hola</Text>
+        <Text>Holaaaa</Text>
     </View>
 
 

@@ -6,130 +6,80 @@ const { width } = Dimensions.get('window'); // ancho de la pantalla
 
 const PolainasCandys = () => {
 return (
-    <ScrollView 
-    contentContainerStyle={styles.scrollContainer} 
-    style={styles.scrollView}
-    >
-    {/* Navbar superior */}
-    <View style={styles.navbar}>
-        <Image
-        source={{ uri: 'https://example.com/logo.png' }} // Reemplaza con la URL de tu logotipo
-        style={styles.logo}
-        />
-        <Text style={styles.navbarTitle}>Polainas Candys</Text>
+<ScrollView 
+contentContainerStyle={styles.scrollContainer} 
+style={styles.scrollView}
+>
+{/* Navbar superior */}
+<View style={styles.navbar}>
+<Image source={require('../../assets/images/2.png')} style={styles.logo} />
+    <Text style={styles.navbarTitle}>Polaina's Candys</Text>
 
-    </View>
+</View>
+<Text style={styles.textAdmn}>Administrador</Text>
 
-    {/* Sección de sucursales */}
-    <View style={styles.pageContainer}>
-        <View style={styles.branchesWrapper}>
-        {/* Título de Sucursales */}
+{/* Sección de sucursales */}
+<View style={styles.pageContainer}>
+    <View style={styles.branchesWrapper}>
+    {/* Título de Sucursales */}
+
         <View style={styles.sucursalesHeader}>
             <Text style={styles.sucursalesText}>Sucursales</Text>
         </View>
 
-        {/* Pabellón de Arteaga */}
-        <View style={styles.branchWrapper}>
-            <Text style={styles.branchTitle}>Pabellón de Arteaga</Text>
-            <View style={styles.branchContainer}>
-            <View style={styles.branchContent}>
-                <Image
-                source={{ uri: 'https://img.freepik.com/vector-premium/boton-icono-contorno-linea-delgada-ubicacion-lugar-tienda_678192-2397.jpg' }} // Reemplaza con la URL de la imagen
-                style={styles.branchImage}
-                />
-                <View style={styles.actionsContainer}>
-                <View style={styles.buttonRow}>
-                    <TouchableOpacity style={[styles.actionButton, styles.viewButton]}>
-                    <Text style={styles.actionButtonText}>Ver</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={[styles.actionButton, styles.deleteButton]}>
-                    <Text style={styles.actionButtonText}>Eliminar</Text>
+    {/* Pabellón de Arteaga */}
+    <View style={styles.branchWrapper}>
+        <Text style={styles.branchTitle}>Pabellón de Arteaga</Text>
+        <View style={styles.branchContent}>
+            <Image
+            source={{ uri: 'https://img.freepik.com/vector-premium/boton-icono-contorno-linea-delgada-ubicacion-lugar-tienda_678192-2397.jpg' }} // Reemplaza con la URL de la imagen
+            style={styles.branchImage}
+            />
+            <View style={styles.actionsContainer}>
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity style={styles.button}>
+                        <View style={styles.innerButton}>
+                            <Text style={styles.buttonText}>Administrar Productos</Text>
+                        </View>
                     </TouchableOpacity>
                 </View>
-                <View style={styles.buttonRow}>
-                    <TouchableOpacity style={[styles.actionButton, styles.addButton]}>
-                    <Text style={styles.actionButtonText}>Agregar</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={[styles.actionButton, styles.editButton]}>
-                    <Text style={styles.actionButtonText}>Editar</Text>
-                    </TouchableOpacity>
-                </View>
-                </View>
-            </View>
+                
             </View>
         </View>
-
-        {/* Rincón de Romos */}
-        <View style={styles.branchWrapper}>
-            <Text style={styles.branchTitle}>Rincón de Romos</Text>
-            <View style={styles.branchContainer}>
-            <View style={styles.branchContent}>
-                <Image
-                source={{ uri: 'https://img.freepik.com/vector-premium/boton-icono-contorno-linea-delgada-ubicacion-lugar-tienda_678192-2397.jpg' }} // Reemplaza con la URL de la imagen
-                style={styles.branchImage}
-                />
-                <View style={styles.actionsContainer}>
-                <View style={styles.buttonRow}>
-                    <TouchableOpacity style={[styles.actionButton, styles.viewButton]}>
-                    <Text style={styles.actionButtonText}>Ver</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={[styles.actionButton, styles.deleteButton]}>
-                    <Text style={styles.actionButtonText}>Eliminar</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.buttonRow}>
-                    <TouchableOpacity style={[styles.actionButton, styles.addButton]}>
-                    <Text style={styles.actionButtonText}>Agregar</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={[styles.actionButton, styles.editButton]}>
-                    <Text style={styles.actionButtonText}>Editar</Text>
-                    </TouchableOpacity>
-                </View>
-                </View>
-            </View>
-            </View>
-        </View>
-
-        {/* San Antonio */}
-        <View style={styles.branchWrapper}>
-            <Text style={styles.branchTitle}>San Antonio</Text>
-            <View style={styles.branchContainer}>
-            <View style={styles.branchContent}>
-                <Image
-                source={{ uri: 'https://img.freepik.com/vector-premium/boton-icono-contorno-linea-delgada-ubicacion-lugar-tienda_678192-2397.jpg' }} // Reemplaza con la URL de la imagen
-                style={styles.branchImage}
-                />
-                <View style={styles.actionsContainer}>
-                <View style={styles.buttonRow}>
-                    <TouchableOpacity style={[styles.actionButton, styles.viewButton]}>
-                    <Text style={styles.actionButtonText}>Ver</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={[styles.actionButton, styles.deleteButton]}>
-                    <Text style={styles.actionButtonText}>Eliminar</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.buttonRow}>
-                    <TouchableOpacity style={[styles.actionButton, styles.addButton]}>
-                    <Text style={styles.actionButtonText}>Agregar</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={[styles.actionButton, styles.editButton]}>
-                    <Text style={styles.actionButtonText}>Editar</Text>
-                    </TouchableOpacity>
-                </View>
-                </View>
-            </View>
-            </View>
-        </View>
-        </View>
-
-        {/* Botón "Administrar Sucursale" */}
-        <TouchableOpacity style={styles.adminButton}>
-        <Text style={styles.adminButtonText}>Administrar Sucursales</Text>
-        </TouchableOpacity>
     </View>
 
-    {/* Navbar inferior con íconos de logs y usuario */}
-    </ScrollView>
+    {/* Rincón de Romos */}
+    <View style={styles.branchWrapper}>
+        <Text style={styles.branchTitle}>Rincón de Romos</Text>
+        <View style={styles.branchContent}>
+            <Image
+            source={{ uri: 'https://img.freepik.com/vector-premium/boton-icono-contorno-linea-delgada-ubicacion-lugar-tienda_678192-2397.jpg' }} // Reemplaza con la URL de la imagen
+            style={styles.branchImage}
+            />
+            <View style={styles.actionsContainer}>
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity style={styles.button}>
+                        <View style={styles.innerButton}>
+                            <Text style={styles.buttonText}>Administrar Productos</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            </View>
+
+        </View>
+      
+    </View>
+
+    </View>
+
+    {/* Botón "Administrar Sucursale" */}
+    <TouchableOpacity style={styles.adminButton}>
+    <Text style={styles.adminButtonText}>Administrar Sucursales</Text>
+    </TouchableOpacity>
+</View>
+
+{/* Navbar inferior con íconos de logs y usuario */}
+</ScrollView>
 );
 };
 
@@ -153,22 +103,28 @@ navbar: {
     borderBottomColor: '#1D1D1D',
 },
 logo: {
-    width: 40,
-    height: 40,
+    width: 60,
+    height: 61,
     marginRight: 10,
     borderRadius: 20,
-    backgroundColor:'rgb(255, 255, 255)',
 },
 navbarTitle: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: '#FFF', // Blanco para el título
+    textAlign:'center',
+    fontSize: 25,
+    color: '#FFF',
     flex: 1,
+    fontFamily: 'Lailasemi',
 },
 pageContainer: {
     flex: 1,
-    padding: 20,
+    padding: 18,
     backgroundColor: '#FFF',
+},
+textAdmn:{
+    paddingVertical:10,
+    textAlign:'center',
+    fontSize:16,
+    fontFamily:'Laila',
 },
 branchesWrapper: {
     padding: 10,
@@ -184,100 +140,113 @@ branchesWrapper: {
 },
 sucursalesHeader: {
     paddingBottom: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#E5E5E5', // Gris muy claro
+    borderBottomWidth: 2,
+    borderBottomColor: 'rgba(167, 167, 167, 0.58)', 
     marginBottom: 10,
+    backgroundColor:'rgb(255, 255, 255)',
+    fontFamily:'Laila',
 },
 sucursalesText: {
     fontSize: 24,
-    fontWeight: 'bold',
     color: '#333',
     textAlign: 'center',
+    fontFamily:'Josefbold',
 },
 branchWrapper: {
     marginBottom: 20,
 },
 branchTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
     marginBottom: 10,
-    color: '#232F3E', // Azul oscuro
+    color: '#232F3E', 
+    fontFamily:'Josefbold',
 },
-branchContainer: {
-    backgroundColor: '#FFF',
-    borderRadius: 10,
-    padding: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.15,
-    shadowRadius: 5,
-    elevation: 3,
-},
+
 branchContent: {
     flexDirection: 'row',
+    borderRadius:10,
     alignItems: 'center',
-    padding: 15,
+    padding: 5,
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 2,
+    borderWidth: 1,
+    borderColor: 'rgba(62, 62, 62, 0.59)',
+    backgroundColor:'rgb(248, 248, 248)', //Modificar
 },
 branchImage: {
     width: 60,
     height: 70,
     borderRadius: 10,
-    marginRight: 20, // Ajuste del espacio entre la imagen y los botones
+    marginHorizontal:10,
 },
 actionsContainer: {
     flexDirection: 'column',
     flex: 1,
 },
-buttonRow: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    marginBottom: 10,
-},
+
 actionButton: {
     paddingVertical: 8,
-    paddingHorizontal: 12, // Ajusta el padding horizontal
+    paddingHorizontal: 20, // Ajusta el padding horizontal
     borderRadius: 8,
-    marginHorizontal: 4,
-    width: 100, // Ajusta el ancho a 100
-    height: 35,
-    justifyContent: 'center',
-    alignItems: 'center',
+    marginHorizontal: 2,
+    width: 230, // Ajusta el ancho a 100
+    height: 45,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.2,
     shadowRadius: 2,
     elevation: 2,
 },
-viewButton: {
-    backgroundColor: '#FF9E9E', // Amarillo cálido
-},
-deleteButton: {
-    backgroundColor: '#F03C2F', // Rojo intenso
-},
-addButton: {
-    backgroundColor: '#65DBA2', // Verde brillante
-},
-editButton: {
-    backgroundColor: '#FBC46B', // Amarillo dorado
-},
 actionButtonText: {
     color: '#FFF',
     fontSize: 14,
     fontWeight: 'bold',
 },
+
+buttonContainer: {
+    alignItems: 'center',
+    marginTop: 25,
+    marginBottom: 30,
+},
+button: {
+    width: 240,
+    height: 53,
+    borderRadius: 10,
+    backgroundColor: 'rgb(255, 255, 255)',
+    elevation: 6,
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.4,
+    shadowRadius: 7,
+},
+innerButton: {
+    width: 241,
+    height: 45,
+    borderRadius: 10,
+    backgroundColor: 'rgb(255, 255, 255)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: 'rgba(62, 62, 62, 0.55)',
+    borderWidth: 1.5,
+},
+buttonText: {
+    color: 'rgb(0, 0, 0)',
+    fontSize: 16,
+    fontFamily: 'Josefinmedium',
+},
+
 adminButton: {
     backgroundColor: '#A874B7',
-
     borderRadius: 10,
     paddingVertical: 15,
-    paddingHorizontal: 30,
+    paddingHorizontal: 10,
     alignItems: 'center',
     marginTop: 20,
 },
 adminButtonText: {
     color: '#ffffff',
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 18,
+    fontFamily: 'Josefbold',
 },
 footerNavbar: {
     flexDirection: 'row',
