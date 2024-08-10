@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import InputWithIcon from '../../components/InputWithIcon';
 import CustomAlert from '../../components/Alert'; 
+import { Link } from 'expo-router';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -70,7 +71,11 @@ function Login() {
                 </TouchableOpacity>
             </View>
 
-            <Text style={styles.registrotext}>¿No tienes cuenta?<Text style={styles.registrocolor}>Regístrate</Text></Text>
+            <Link href="/registro" style={styles.registrotext}>
+                    <Text>
+                    ¿No tienes cuenta? <Text style={styles.registrocolor}>Regístrate</Text>
+                    </Text>
+                </Link>
 
             <CustomAlert
                 visible={alertVisible}
