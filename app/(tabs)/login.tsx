@@ -8,6 +8,7 @@ function Login() {
     const [password, setPassword] = useState('');
     const [alertVisible, setAlertVisible] = useState(false);
     const [alertMessage, setAlertMessage] = useState(<></>);
+    const [passwordVisible, setPasswordVisible] = useState(false); // Estado para controlar la visibilidad de la contraseña
 
     const handleLogin = () => {
         if (!email || !password) {
