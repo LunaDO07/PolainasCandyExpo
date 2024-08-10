@@ -3,7 +3,7 @@ import React from 'react';
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { FontAwesome } from '@expo/vector-icons';
+import {  Ionicons } from '@expo/vector-icons';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -102,6 +102,39 @@ export default function TabLayout() {
         ),
       }}
     />
+  
+
+    <Tabs.Screen
+        name="tablaSucursales"
+        options={{
+          title: 'tablaSucursales',
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons name={focused ? 'location-sharp' : 'location-outline'} color={color} size={24} />
+          ),
+        }}
+      />
+
+    <Tabs.Screen
+        name="logs"
+        options={{
+          title: 'logs',
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons name={focused ? 'document-text' : 'document-text-outline'} color={color} size={24} />
+          ),
+        }}
+      />
+    
+      
+      {/* Nuevo ícono para la tabla de productos */}
+      <Tabs.Screen
+        name="tablaProductos"
+        options={{
+          title: 'Productos',
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons name={focused ? 'storefront' : 'storefront-outline'} color={color} size={24} />
+          ),
+        }}
+      />
 
 
 

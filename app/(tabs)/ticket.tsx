@@ -5,7 +5,7 @@ import NavSinBusqueda  from '../../components/navSinBusqueda';
 
 const { width } = Dimensions.get('window'); // Ancho de la pantalla
 
-const TicketScreen = () => {
+const Ticket = () => {
 // Datos de ejemplo
 const ticketData = {
     idCompra: '12345',
@@ -180,4 +180,4 @@ submitButtonText: {
 },
 });
 
-export default TicketScreen;
+export default Ticket;
