@@ -3,7 +3,7 @@
     import { FontAwesome } from '@expo/vector-icons';
     import Ionicons from '@expo/vector-icons/Ionicons';
 
-    const NavSinBusqueda = () => {
+    const NavBusqueda = () => {
     // Define el tipo de referencia
     const drawer = useRef<DrawerLayoutAndroid>(null);
 
@@ -140,4 +140,4 @@ headermenu:{
 
 });
 
-export default NavSinBusqueda;
+export default NavBusqueda;
