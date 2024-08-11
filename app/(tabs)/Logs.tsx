@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet, StatusBar } from 'react-native';
+import { NavAdmn } from '../../components/NavAdmn';
 
 const LogsScreen = () => {
 const logs = [
@@ -12,9 +13,7 @@ const logs = [
 return (
     <View style={styles.container}>
     {/* Navbar superior */}
-    <View style={styles.navbar}>
-        <Text style={styles.navbarTitle}>Polainas Candys - Logs</Text>
-    </View>
+    <NavAdmn/>
 
     {/* Tabla de Logs */}
     <ScrollView contentContainerStyle={styles.tableContainer}>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, FlatList, Dimensions, ScrollView, TouchableOpacity, StatusBar, Modal, TextInput } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { FontAwesome } from '@expo/vector-icons';
+import { NavAdmn } from '../../components/NavAdmn';
 
 const { width } = Dimensions.get('window'); // Ancho de la pantalla
 
@@ -76,9 +77,7 @@ const renderItem = ({ item }: { item: typeof data[0] }) => (
 return (
     <View style={styles.container}>
     {/* Navbar superior */}
-    <View style={styles.navbar}>
-        <Text style={styles.navbarTitle}>Polainas Candys - Productos</Text>
-    </View>
+   <NavAdmn/>
 
     {/* Encabezado de la tabla como Navbar */}
     <View style={styles.tableHeaderNavbar}>
@@ -171,6 +170,7 @@ return (
             <TextInput
             style={styles.modalInput}
             placeholder="Existencias"
+            keyboardType="numeric" 
             value={selectedItem?.existencias}
             onChangeText={(text) => setSelectedItem({ ...selectedItem, existencias: text })}
             />
@@ -247,6 +247,7 @@ return (
             <TextInput
             style={styles.modalInput}
             placeholder="Existencias"
+            keyboardType="numeric" 
             value={newProduct.existencias}
             onChangeText={(text) => setNewProduct({ ...newProduct, existencias: text })}
             />
@@ -284,46 +285,33 @@ container: {
     backgroundColor: '#F4F4F4',
     paddingTop: StatusBar.currentHeight || 0,
 },
-navbar: {
-    backgroundColor: '#232F3E',
-    paddingVertical: 15,
-    paddingHorizontal: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: '#1D1D1D',
-},
-navbarTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#FFF',
-},
 tableHeaderNavbar: {
-    backgroundColor: '#232F3E',
+    backgroundColor: 'rgb(255, 255, 255)',
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: '#1D1D1D',
 },
 tableHeaderNavbarTitle: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: '#FFF',
+    color: '#000000',
+    fontFamily:'Lailasemi',
+    textAlign:'center',
 },
 addButtonWrapper: {
     alignItems: 'center',
     marginVertical: 10,
 },
 addButton: {
-    backgroundColor: '#232F3E',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 8,
+    backgroundColor: '#b781b3', 
+    padding: 13,
+    borderRadius: 25,
     flexDirection: 'row',
     alignItems: 'center',
 },
 addButtonText: {
     color: '#FFF',
-    fontWeight: 'bold',
     marginLeft: 10,
+    fontFamily:'Josefbold',
+    fontSize:15,
 },
 tableWrapper: {
     flex: 1,
@@ -346,8 +334,8 @@ table: {
 },
 tableHeader: {
     flexDirection: 'row',
-    backgroundColor: '#E5E5E5',
-    paddingVertical: 8,
+    backgroundColor: '#b9b9b9',
+    paddingVertical: 10,
     paddingHorizontal: 5,
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
@@ -356,11 +344,11 @@ tableHeader: {
 },
 tableHeaderText: {
     fontSize: 12,
-    fontWeight: 'bold',
     color: '#333',
     textAlign: 'center',
     flex: 1,
     minWidth: 100, 
+    fontFamily:'Lailabold',
 },
 tableColumnID: {
     flex: 2,
@@ -406,9 +394,10 @@ cell: {
     flex: 1,
     textAlign: 'center',
     paddingHorizontal: 5,
-    fontSize: 12,
+    fontSize: 11,
     color: '#333',
-    minWidth: 100, 
+    minWidth: 80,
+    fontFamily:'Laila',
 },
 actions: {
     flexDirection: 'row',
@@ -439,8 +428,8 @@ modalContent: {
 },
 modalTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
     marginBottom: 10,
+    fontFamily:'Lailabold'
 },
 modalInput: {
     height: 40,
@@ -449,6 +438,7 @@ modalInput: {
     borderRadius: 4,
     marginBottom: 10,
     paddingHorizontal: 10,
+    fontFamily:'Laila'
 },
 modalButtons: {
     flexDirection: 'row',
@@ -459,17 +449,17 @@ modalButton: {
     flex: 1,
     marginHorizontal: 5,
     paddingVertical: 10,
-    borderRadius: 4,
     alignItems: 'center',
+    borderRadius:20,
 },
 saveButton: {
-    backgroundColor: '#B0B0B0',
+    backgroundColor: '#b781b3',  // Mismo color que el botón de agregar
 },
 cancelButton: {
-    backgroundColor: '#D0D0D0',
+    backgroundColor: '#454545',
 },
 buttonText: {
-    color: '#333',
+    color: '#ffffff',
     fontWeight: 'bold',
 },
 });

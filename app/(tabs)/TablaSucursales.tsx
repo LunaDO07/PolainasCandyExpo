@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
 container: {
     flex: 1,
     paddingTop: StatusBar.currentHeight || 0,
-    backgroundColor: 'rgba(206, 229, 230, 0.7)',
+    backgroundColor: '#F4F4F4',
 },
 tableHeaderNavbar: {
     backgroundColor: 'rgb(255, 255, 255)',
@@ -296,22 +296,23 @@ table: {
 },
 tableHeader: {
     flexDirection: 'row',
-    paddingVertical: 8,
-    paddingHorizontal: 5,
+    paddingTop: 10,
+    paddingHorizontal: 1,
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
     borderBottomWidth: 1,
     borderBottomColor: '#DDDDDD',
     width: width * 1.5,
     backgroundColor: 'rgba(62, 193, 202, 0.84)',
+    
 },
 tableHeaderText: {
     fontSize: 12,
-    fontWeight: 'bold',
     color: '#333',
     textAlign: 'center',
     flex: 1,
     minWidth: 80,
+    fontFamily:'Lailabold',
 },
 tableColumnCalle: {
     flex: 4,
