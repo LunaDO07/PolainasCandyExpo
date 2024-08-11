@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
     },
     label: {
-        fontSize: 15,
+        fontSize: 1,
         fontWeight: '600',
         marginBottom: 5,
         color: '#333',

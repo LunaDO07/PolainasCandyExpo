@@ -1,6 +1,6 @@
+import { NavAdmn } from '@/components/NavAdmn';
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, TextInput, Image, Dimensions, StatusBar } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
 
 const { width } = Dimensions.get('window'); // ancho de la pantalla
 
@@ -11,11 +11,9 @@ contentContainerStyle={styles.scrollContainer}
 style={styles.scrollView}
 >
 {/* Navbar superior */}
-<View style={styles.navbar}>
-<Image source={require('../../assets/images/2.png')} style={styles.logo} />
-    <Text style={styles.navbarTitle}>Polaina's Candys</Text>
+    <NavAdmn/>
 
-</View>
+
 <Text style={styles.textAdmn}>Administrador</Text>
 
 {/* Sección de sucursales */}
@@ -76,28 +74,6 @@ scrollContainer: {
 },
 scrollView: {
     flex: 1,
-},
-navbar: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#000000',
-    paddingVertical: 15,
-    paddingHorizontal: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: '#1D1D1D',
-},
-logo: {
-    width: 60,
-    height: 61,
-    marginRight: 10,
-    borderRadius: 20,
-},
-navbarTitle: {
-    textAlign:'center',
-    fontSize: 25,
-    color: '#FFF',
-    flex: 1,
-    fontFamily: 'Lailasemi',
 },
 pageContainer: {
     flex: 1,

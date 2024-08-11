@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, FlatList, Dimensions, ScrollView, TouchableOpacity, StatusBar, Modal, TextInput } from 'react-native';
+import { View, Text, StyleSheet, Image, FlatList, Dimensions, ScrollView, TouchableOpacity, StatusBar, Modal, TextInput } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { FontAwesome } from '@expo/vector-icons';
+import { NavAdmn } from '../../components/NavAdmn';
 
 const { width } = Dimensions.get('window');
 
@@ -79,12 +80,11 @@ const renderItem = ({ item }: { item: typeof initialData[0] }) => (
 
 return (
     <View style={styles.container}>
-    <View style={styles.navbar}>
-        <Text style={styles.navbarTitle}>Polainas Candys - Sucursalesnnn</Text>
-    </View>
+    {/* Navbar superior */}
+        <NavAdmn/>
 
     <View style={styles.tableHeaderNavbar}>
-        <Text style={styles.tableHeaderNavbarTitle}>Lista de Sucursalesss</Text>
+        <Text style={styles.tableHeaderNavbarTitle}>Lista de Sucursales</Text>
     </View>
 
     <View style={styles.addButtonWrapper}>
@@ -136,6 +136,7 @@ return (
             style={styles.modalInput}
             placeholder="Número"
             value={selectedItem?.numero}
+            keyboardType="numeric" 
             onChangeText={(text) => setSelectedItem({ ...selectedItem, numero: text })}
             />
             <TextInput
@@ -159,6 +160,7 @@ return (
             <TextInput
             style={styles.modalInput}
             placeholder="Código Postal"
+            keyboardType="numeric" 
             value={selectedItem?.codigoPostal}
             onChangeText={(text) => setSelectedItem({ ...selectedItem, codigoPostal: text })}
             />
@@ -193,6 +195,7 @@ return (
             <TextInput
             style={styles.modalInput}
             placeholder="Número"
+            keyboardType="numeric" 
             value={newItem.numero}
             onChangeText={(text) => setNewItem({ ...newItem, numero: text })}
             />
@@ -217,6 +220,7 @@ return (
             <TextInput
             style={styles.modalInput}
             placeholder="Código Postal"
+            keyboardType="numeric" 
             value={newItem.codigoPostal}
             onChangeText={(text) => setNewItem({ ...newItem, codigoPostal: text })}
             />
@@ -238,50 +242,38 @@ return (
 const styles = StyleSheet.create({
 container: {
     flex: 1,
-    backgroundColor: '#F4F4F4',
     paddingTop: StatusBar.currentHeight || 0,
-},
-navbar: {
-    backgroundColor: '#232F3E',
-    paddingVertical: 15,
-    paddingHorizontal: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: '#1D1D1D',
-},
-navbarTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#FFF',
+    backgroundColor: 'rgba(206, 229, 230, 0.7)',
 },
 tableHeaderNavbar: {
-    backgroundColor: '#232F3E',
+    backgroundColor: 'rgb(255, 255, 255)',
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: '#1D1D1D',
 },
+
 tableHeaderNavbarTitle: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: '#FFF',
+    color: '#000000',
+    fontFamily:'Lailasemi',
+    textAlign:'center',
 },
 addButtonWrapper: {
     padding: 10,
     alignItems: 'center',
-    backgroundColor: '#F4F4F4', // Cambia el color a uno más claro
 },
 addButton: {
-    backgroundColor: '#232F3E', // Deja este color o ajusta según sea necesario
-    padding: 10,
-    borderRadius: 8,
+    backgroundColor: '#15879e', 
+    padding: 13,
+    borderRadius: 25,
     flexDirection: 'row',
     alignItems: 'center',
 },
 
 addButtonText: {
     color: '#FFF',
-    fontWeight: 'bold',
     marginLeft: 10,
+    fontFamily:'Josefbold',
+    fontSize:15,
 },
 tableWrapper: {
     flex: 1,
@@ -304,7 +296,6 @@ table: {
 },
 tableHeader: {
     flexDirection: 'row',
-    backgroundColor: '#E5E5E5',
     paddingVertical: 8,
     paddingHorizontal: 5,
     borderTopLeftRadius: 8,
@@ -312,6 +303,7 @@ tableHeader: {
     borderBottomWidth: 1,
     borderBottomColor: '#DDDDDD',
     width: width * 1.5,
+    backgroundColor: 'rgba(62, 193, 202, 0.84)',
 },
 tableHeaderText: {
     fontSize: 12,
@@ -349,14 +341,16 @@ row: {
     borderBottomColor: '#E5E5E5',
     backgroundColor: '#FFF',
     width: width * 1.5,
+    
 },
 cell: {
     flex: 1,
     textAlign: 'center',
     paddingHorizontal: 5,
-    fontSize: 12,
+    fontSize: 11,
     color: '#333',
     minWidth: 80,
+    fontFamily:'Laila',
 },
 actions: {
     flexDirection: 'row',
@@ -387,8 +381,8 @@ modalContent: {
 },
 modalTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
     marginBottom: 10,
+    fontFamily:'Lailabold'
 },
 modalInput: {
     height: 40,
@@ -397,6 +391,7 @@ modalInput: {
     borderRadius: 4,
     marginBottom: 10,
     paddingHorizontal: 10,
+    fontFamily:'Laila'
 },
 modalButtons: {
     flexDirection: 'row',
@@ -407,18 +402,19 @@ modalButton: {
     flex: 1,
     marginHorizontal: 5,
     paddingVertical: 10,
-    borderRadius: 4,
     alignItems: 'center',
+    borderRadius:20,
 },
 saveButton: {
-    backgroundColor: '#B0B0B0', // Mismo color que el botón de agregar
+    backgroundColor: '#15879e', // Mismo color que el botón de agregar
 },
 cancelButton: {
-    backgroundColor: '#D0D0D0',
+    backgroundColor: '#454545',
 },
 buttonText: {
-    color: '#333',
-    fontWeight: 'bold',
+    color:'rgb(255, 255, 255)',
+    fontFamily:'Josefbold',
+    fontSize:15,
 },
 });
 
