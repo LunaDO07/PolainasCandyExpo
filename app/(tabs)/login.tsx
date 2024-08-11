@@ -47,7 +47,7 @@ function Login() {
                 </View>
             </View>
 
-            <Text style={styles.name}>POLAINA'S CANDYS</Text>
+            <Text style={styles.name}>NO</Text>
             <View style={styles.form}>
                 <InputWithIcon
                     iconName="mail-outline"

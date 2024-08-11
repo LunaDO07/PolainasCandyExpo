@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Pressable, ScrollView, Dimensions, StatusBar, Modal, Alert } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import NavSinBusqueda from '../../components/navSinBusqueda';
+import NavBusqueda from '../../components/navBusqueda';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 
@@ -52,7 +52,7 @@ const ConfirmacionScreen = () => {
 
     return (
         <View style={styles.container}>
-            <NavSinBusqueda />
+            <NavBusqueda />
 
             {/* Contenido del formulario */}
             <ScrollView contentContainerStyle={styles.formContainer}>

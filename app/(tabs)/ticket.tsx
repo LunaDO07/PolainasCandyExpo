@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Dimensions, StatusBar } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
-import NavSinBusqueda  from '../../components/navSinBusqueda';
+import NavBusqueda  from '../../components/navBusqueda';
 import { useRouter } from 'expo-router';
 
 const { width } = Dimensions.get('window'); // Ancho de la pantalla
@@ -32,7 +32,7 @@ const handleCheckout = () => {
 
 return (
     <View style={styles.container}>
-    <NavSinBusqueda/>
+    <NavBusqueda/>
 
     {/* Contenido del ticket */}
     <ScrollView contentContainerStyle={styles.ticketContainer}>
@@ -99,13 +99,14 @@ const styles = StyleSheet.create({
 container: {
     flex: 1,
     backgroundColor: '#F4F4F4',
-    paddingTop: StatusBar.currentHeight || 0, // Añade padding superior para evitar la barra de estado
 },
 
 ticketContainer: {
     padding: 20,
 },
+
 ticketBox: {
+    paddingTop:120,
     backgroundColor: '#FFF',
     borderRadius: 8,
     padding: 20,

@@ -8,7 +8,8 @@ import { Ionicons } from '@expo/vector-icons';
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
-  const hiddenScreens = ["login"]; // Nombres de las pantallas que deseas ocultar
+  const hiddenScreens = ["login"]; 
+  // const hiddenScreens = ["login,"index","registro","sucursales",]; 
 
   return (
     <Tabs

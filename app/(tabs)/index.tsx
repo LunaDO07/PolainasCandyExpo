@@ -3,11 +3,26 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { Tabs } from 'expo-router';
-import NavBusqueda from '../../components/navBusqueda';
 
 export default function HomeScreen() {
   return (
-   <NavBusqueda/>
+    <ParallaxScrollView
+      headerBackgroundColor={{ light: '#A1CEDC', dark: '#000000' }}
+      headerImage={
+        <Image
+          source={require('@/assets/images/2.png')}
+          style={styles.Logo}
+        />
+      }>
+      <ThemedView style={styles.titleContainer}>
+        <ThemedText type="title">Polainas Candys!</ThemedText>
+        
+      </ThemedView>
+      <ThemedView>
+        <Text style={styles.texto}>Ignorar pagina - En proceso :D</Text>
+      </ThemedView>
+      
+    </ParallaxScrollView>
   );
 }
 

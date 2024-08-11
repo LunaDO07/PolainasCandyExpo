@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TextInput, Alert, TouchableOpacity, ScrollView, Modal } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { FontAwesome } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 
 type Product = {
 id: number;
@@ -13,6 +14,12 @@ description: string;
 
 
 export default function ProductScreen() {
+const router = useRouter();
+
+const IrInicio = () => {
+    router.push('/indexCliente'); // Cambia el path según tu ruta deseada
+};
+
 const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
 const products: Product[] = [
@@ -42,7 +49,10 @@ return (
     <View style={styles.container}>
 
     {/* Barra derecha  No mover ya definidos*/}
-    <View style={styles.sidebar}>
+    <ScrollView style={styles.sidebar}>
+    <TouchableOpacity onPress={IrInicio} style={styles.navButton}>
+                    <Ionicons name="arrow-back" size={24} color="#000" />
+                </TouchableOpacity>
         <View style={styles.sidebarItem}>
             <Image source={require('../../assets/images/gomitas.jpg')} style={styles.sidebarImage} />
             <Text style={styles.sidebarText}>Gomitas</Text>
@@ -75,7 +85,7 @@ return (
             <Image  source={require('../../assets/images/tamarindo.jpg')} style={styles.sidebarImage} />
             <Text style={styles.sidebarText}>Tamarindo</Text>
         </View>
-    </View>
+    </ScrollView>
 
     {/* Cards de productos  AQUI SI MODIFICAR*/}
 
@@ -140,8 +150,19 @@ sidebar: {
     padding: 5,
     paddingTop:45,
 },
+navButton: {
+    backgroundColor: '#fff',
+    padding: 10,
+    borderRadius: 50,
+    marginBottom: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginHorizontal: 5,
+    elevation: 5,
+},
 sidebarItem: {
-    marginBottom: 23,
+    marginTop:10,
+    marginBottom: 10,
     alignItems: 'center',
 },
 sidebarImage: {
