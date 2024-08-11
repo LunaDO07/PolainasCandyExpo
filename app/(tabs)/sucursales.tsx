@@ -27,9 +27,9 @@ style={styles.scrollView}
             <Text style={styles.sucursalesText}>Sucursales</Text>
         </View>
 
-    {/* Pabellón de Arteaga */}
+    {/* Nombre de la sucursal*/}
     <View style={styles.branchWrapper}>
-        <Text style={styles.branchTitle}>Pabellón de Arteaga</Text>
+        <Text style={styles.branchTitle}>Nombre de sucursal</Text>
         <View style={styles.branchContent}>
             <Image
             source={{ uri: 'https://img.freepik.com/vector-premium/boton-icono-contorno-linea-delgada-ubicacion-lugar-tienda_678192-2397.jpg' }} // Reemplaza con la URL de la imagen
@@ -47,35 +47,19 @@ style={styles.scrollView}
             </View>
         </View>
     </View>
-
-    {/* Rincón de Romos */}
-    <View style={styles.branchWrapper}>
-        <Text style={styles.branchTitle}>Rincón de Romos</Text>
-        <View style={styles.branchContent}>
-            <Image
-            source={{ uri: 'https://img.freepik.com/vector-premium/boton-icono-contorno-linea-delgada-ubicacion-lugar-tienda_678192-2397.jpg' }} // Reemplaza con la URL de la imagen
-            style={styles.branchImage}
-            />
-            <View style={styles.actionsContainer}>
-                <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={styles.button}>
-                        <View style={styles.innerButton}>
-                            <Text style={styles.buttonText}>Administrar Productos</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-            </View>
-
-        </View>
-      
+{/* aqui van debajo las otras */}
     </View>
 
-    </View>
-
+<View style={{flexDirection:'row'}}>
     {/* Botón "Administrar Sucursale" */}
     <TouchableOpacity style={styles.adminButton}>
-    <Text style={styles.adminButtonText}>Administrar Sucursales</Text>
+    <Text style={styles.adminButtonText}>Sucursales</Text>
     </TouchableOpacity>
+
+    <TouchableOpacity style={styles.adminButton}>
+    <Text style={styles.adminButtonText}>Productos</Text>
+    </TouchableOpacity>
+</View>
 </View>
 
 {/* Navbar inferior con íconos de logs y usuario */}
@@ -236,17 +220,24 @@ buttonText: {
 },
 
 adminButton: {
-    backgroundColor: '#A874B7',
+    backgroundColor: 'rgb(176, 116, 180)',
     borderRadius: 10,
     paddingVertical: 15,
     paddingHorizontal: 10,
     alignItems: 'center',
+    width:170,
+    marginHorizontal:10,
     marginTop: 20,
+    elevation:10,
+    borderWidth:1,
+    borderColor:'rgb(91, 18, 99)',
 },
 adminButtonText: {
     color: '#ffffff',
     fontSize: 18,
     fontFamily: 'Josefbold',
+    textAlign:'center',
+    lineHeight: 25,
 },
 footerNavbar: {
     flexDirection: 'row',

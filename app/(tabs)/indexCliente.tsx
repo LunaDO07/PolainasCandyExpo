@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, ScrollView, Modal, Dimensions , TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView, Modal, Alert, Dimensions , TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import NavBusqueda from '../../components/navBusqueda';
 import { ImageSourcePropType } from 'react-native';
@@ -72,12 +72,17 @@ const IndexCliente: React.FC = () => {
         setSelectedProduct(null);
     };
 
+    const handleAddToCart = () => {
+        // Cierra el modal
+        closeModal();
+        // Muestra un mensaje de éxito
+        Alert.alert('Producto añadido', ' El Producto se añadio al carrito de compras');
+    };
+
 return (
     <View style={styles.container}>
         <NavBusqueda/>
         <ScrollView contentContainerStyle={styles.scrollContainer}>
-
-   
     
 {/* Carrusel de imágenes */}
     <ScrollView horizontal pagingEnabled style={styles.carouselContainer}>
@@ -133,7 +138,7 @@ return (
                 <Image source={{ uri: selectedProduct.image }} style={styles.modalProductImage} />
                 <Text style={styles.productDescription}>{selectedProduct.description}</Text>
                 <Text style={styles.productPrice}>{selectedProduct.price}</Text>
-                <TouchableOpacity style={styles.addButton}>
+                <TouchableOpacity style={styles.addButton}  onPress={handleAddToCart}>
                     <Text style={styles.addButtonText}>Añadir al carrito</Text>
                     <FontAwesome name="shopping-cart" size={30} color="#FFF" />
                 </TouchableOpacity>
@@ -171,11 +176,13 @@ section: {
 },
 sectionTitle: {
     fontSize: 24,
-    marginBottom: 15,
+    marginBottom: 25,
     color: '#333',
     textAlign: 'center',
     fontFamily:'Josefbold',
     backgroundColor:'rgb(255, 255, 255)',
+    paddingRight:70,
+    paddingLeft:15,
     borderColor:'rgb(113, 113, 113)',
 },
 marker: {
@@ -183,7 +190,6 @@ marker: {
     height: 35,
     backgroundColor: '#1caca8',
     position: 'relative',
-    marginRight:10,
     marginVertical:9,
 },
 sectionTitle2: {

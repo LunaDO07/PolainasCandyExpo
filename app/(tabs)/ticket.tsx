@@ -30,12 +30,14 @@ return (
 
     {/* Contenido del ticket */}
     <ScrollView contentContainerStyle={styles.ticketContainer}>
+
+        {/* REVISAR CAMPOS DE TICKET EN BACK */}
         <View style={styles.ticketBox}>
-        <Text style={styles.ticketTitle}>ID de Compra: {ticketData.idCompra}</Text>
-        <Text style={styles.ticketInfo}>Fecha y Hora: {ticketData.fechaHora}</Text>
-        <Text style={styles.ticketInfo}>ID de Sucursal: {ticketData.idSucursal}</Text>
-        <Text style={styles.ticketInfo}>Nombre de la Sucursal: {ticketData.nombreSucursal}</Text>
-        <Text style={styles.ticketInfo}>Dirección de la Sucursal: {ticketData.direccionSucursal}</Text>
+            <Text style={styles.ticketTitle}>ID de Compra: {ticketData.idCompra}</Text>
+            <Text style={styles.ticketInfo}>Fecha y Hora: {ticketData.fechaHora}</Text>
+            <Text style={styles.ticketInfo}>ID de Sucursal: {ticketData.idSucursal}</Text>
+            <Text style={styles.ticketInfo}>Nombre de la Sucursal: {ticketData.nombreSucursal}</Text>
+            <Text style={styles.ticketInfo}>Dirección de la Sucursal: {ticketData.direccionSucursal}</Text>
         <View style={styles.separator} />
 
         {/* Detalles del producto */}
@@ -107,14 +109,17 @@ ticketBox: {
 },
 ticketTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: 20,
     color: '#333',
+    fontFamily: 'Josefbold',
+    textDecorationLine:'underline',
 },
 ticketInfo: {
-    fontSize: 16,
-    marginBottom: 8, // Mayor margen inferior para separar las líneas
+    fontSize: 14,
+    marginBottom: 10, // Mayor margen inferior para separar las líneas
     color: '#333',
+    fontFamily: 'Laila',
+
 },
 separator: {
     height: 1,
@@ -130,9 +135,9 @@ productHeader: {
     marginBottom: 10, // Mayor margen inferior para separar de la lista de productos
 },
 productHeaderText: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 14,
     color: '#333',
+    fontFamily: 'Josefbold',
 },
 productHeaderItem: {
     flex: 1,
@@ -144,8 +149,9 @@ productRow: {
     paddingVertical: 10, // Mayor padding vertical para separar filas
 },
 productText: {
-    fontSize: 16,
+    fontSize: 13,
     color: '#333',
+    fontFamily: 'Laila',
 },
 productItem: {
     flex: 1,
@@ -158,12 +164,13 @@ totalRow: {
 },
 totalLabel: {
     fontSize: 16,
-    fontWeight: 'bold',
     color: '#333',
+    fontFamily: 'Lailasemi',
 },
 totalValue: {
     fontSize: 16,
     color: '#333',
+    fontFamily: 'Laila',
 },
 submitButton: {
     marginTop:30,

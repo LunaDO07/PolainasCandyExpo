@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, ScrollView, Modal } from 'react-native';
+import { View, Text, StyleSheet, Image, TextInput, Alert, TouchableOpacity, ScrollView, Modal } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -29,6 +29,13 @@ const handleProductPress = (product: Product) => {
 
 const closeModal = () => {
     setSelectedProduct(null);
+};
+
+const handleAddToCart = () => {
+    // Cierra el modal
+    closeModal();
+    // Muestra un mensaje de éxito
+    Alert.alert('Producto añadido', ' El Producto se añadio al carrito de compras');
 };
 
 return (
@@ -108,7 +115,7 @@ return (
                 <Image source={{ uri: selectedProduct.image }} style={styles.modalProductImage} />
                 <Text style={styles.productDescription}>{selectedProduct.description}</Text>
                 <Text style={styles.productPrice}>{selectedProduct.price}</Text>
-                <TouchableOpacity style={styles.addButton}>
+                <TouchableOpacity style={styles.addButton}  onPress={handleAddToCart}>
                     <Text style={styles.addButtonText}>Añadir al carrito</Text>
                     <FontAwesome name="shopping-cart" size={30} color="#FFF" />
                 </TouchableOpacity>
@@ -167,8 +174,8 @@ productCard: {
     borderColor: 'gray',
 },
 productImage: {
-    width: 99,
-    height: 90,
+    width: 79,
+    height: 70,
     borderRadius: 8,
 },
 productName: {
@@ -178,7 +185,7 @@ productName: {
 },
 productPrice: {
     fontSize: 17,
-    color: '#393939',
+    color: '#106680',
     fontFamily:'Josefbold',
 },
 modalContainer: {
