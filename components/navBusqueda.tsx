@@ -2,14 +2,21 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Modal, Pressable, Dimensions } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { useRouter } from 'expo-router'; // Importa useRouter para navegación
 
 const { width: screenWidth } = Dimensions.get('window');
 
 const NavBusqueda = () => {
     const [modalVisible, setModalVisible] = useState(false);
+    const router = useRouter(); // Hook de navegación
 
     const handleOpenModal = () => setModalVisible(true);
     const handleCloseModal = () => setModalVisible(false);
+
+    const handleNavigation = (path: string) => {
+        handleCloseModal(); // Cierra el modal y refresca la página
+        router.push({ pathname: path as any }); // Forzar el tipo si es necesario
+    };
 
     return (
         <View style={styles.container}>
@@ -33,7 +40,9 @@ const NavBusqueda = () => {
                     </View>
 
                     <View style={styles.cartContainer}>
-                        <FontAwesome name="shopping-cart" size={30} color="#FFF" />
+                        <TouchableOpacity onPress={() => handleNavigation('/cart')}>
+                            <FontAwesome name="shopping-cart" size={30} color="#FFF" />
+                        </TouchableOpacity>
                         <View style={styles.cartBadge}>
                             <Text style={styles.cartBadgeText}>1</Text>
                         </View>
@@ -45,17 +54,41 @@ const NavBusqueda = () => {
             <Modal
                 visible={modalVisible}
                 transparent
-                animationType="none"
+                animationType="fade"
                 onRequestClose={handleCloseModal}
             >
                 <View style={styles.modalOverlay}>
                     <View style={styles.modalContainer}>
-                        <Pressable style={styles.closeButton} onPress={handleCloseModal}>
-                            <Ionicons name="close" size={24} color="#FFF" />
-                        </Pressable>
-                        <Text style={styles.drawerItem}>Inicio</Text>
-                        <Text style={styles.drawerItem}>Datos de usuario</Text>
-                        <Text style={styles.drawerItem}>Carrito</Text>
+                        {/* Encabezado del Modal */}
+                        <View style={styles.modalHeader}>
+                            <Text style={styles.modalTitle}>Menu</Text>
+                            <Pressable style={styles.closeButton} onPress={handleCloseModal}>
+                                <Ionicons name="close" size={32} color="#FFF" />
+                            </Pressable>
+                        </View>
+
+                        {/* Enlaces del Modal */}
+                        <View style={styles.views}>
+                            <TouchableOpacity style={styles.drawerItemContainer} onPress={() => handleNavigation('/indexCliente')}>
+                                <Ionicons name='home' size={24} color='rgb(0, 0, 0)' style={styles.drawerIcon} />
+                                <Text style={styles.drawerItem}>Inicio</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity style={styles.drawerItemContainer} onPress={() => handleNavigation('/categorias')}>
+                                <Ionicons name='heart' size={24} color='rgb(0, 0, 0)' style={styles.drawerIcon} />
+                                <Text style={styles.drawerItem}>Categorias</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity style={styles.drawerItemContainer} onPress={() => handleNavigation('/carrito')}>
+                                <Ionicons name='cart' size={24} color='rgb(0, 0, 0)' style={styles.drawerIcon} />
+                                <Text style={styles.drawerItem}>Carrito</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity style={styles.drawerItemContainer} onPress={() => handleNavigation('/datosUser')}>
+                                <Ionicons name='person' size={24} color='rgb(0, 0, 0)' style={styles.drawerIcon} />
+                                <Text style={styles.drawerItem}>Datos de envio</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
             </Modal>
@@ -66,7 +99,7 @@ const NavBusqueda = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop:25,
+        marginTop: 25,
     },
     navbar: {
         backgroundColor: 'rgb(39, 39, 39)',
@@ -77,7 +110,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 0,
         width: '100%',
-        zIndex: 1000, // Asegúrate de que esté sobre otros contenidos
+        zIndex: 1000,
     },
     titleContainer: {
         alignItems: 'center',
@@ -116,6 +149,24 @@ const styles = StyleSheet.create({
         fontFamily: 'Josefinli',
         fontSize: 17,
     },
+    views: {
+        flexDirection: 'column',
+        marginTop: 10,
+    },
+    drawerItemContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginVertical: 5,
+    },
+    drawerIcon: {
+        marginRight: 10,
+        marginBottom:15,
+    },
+    drawerItem: {
+        fontSize: 16,
+        fontFamily: 'Laila',
+        marginBottom:10,
+    },
     searchIcon: {
         marginLeft: 10,
     },
@@ -141,32 +192,45 @@ const styles = StyleSheet.create({
     modalOverlay: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'flex-end', // Alinea al modal a la derecha
+        alignItems: 'flex-end',
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
     modalContainer: {
         width: 250,
-        height:'100%',
+        height: '100%',
         backgroundColor: '#FFF',
         borderRadius: 10,
         padding: 20,
         alignItems: 'flex-start',
         position: 'absolute',
-        left: 0, // Alinea el modal al borde derecho
-        top: 0, // Alinea el modal al borde superior
+        left: 0, 
+        top: 0,
+        paddingTop: 110,
+    },
+    modalHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        height: 100,
+        backgroundColor: '#000',
+        padding: 10,
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+        position: 'absolute',
+        top: 0,
+        width: 250,
+    },
+    modalTitle: {
+        fontSize: 20,
+        marginLeft: 30,
+        color: '#FFF',
+        fontFamily: 'Lailasemi',
+        paddingVertical: 20,
     },
     closeButton: {
-        position: 'absolute',
-        top: 10,
-        right: 10,
         backgroundColor: '#000',
         borderRadius: 20,
-        padding: 10,
-    },
-    drawerItem: {
-        fontSize: 18,
         paddingVertical: 10,
-        fontFamily: 'Laila',
+        paddingHorizontal: 15,
     },
 });
 

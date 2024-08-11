@@ -71,8 +71,12 @@ function Login() {
                 </TouchableOpacity>
             </View>
 
-            <CustomNavigator showLogin={false} showRegistro={true} />
-
+            <CustomNavigator
+        showLinks={{
+          inicio: false, // Muestra el enlace de Inicio
+          registro: true, // Muestra el enlace de Registro
+          login: false, // No muestra el enlace de Login
+        }}/>
             <CustomAlert
                 visible={alertVisible}
                 message={alertMessage}

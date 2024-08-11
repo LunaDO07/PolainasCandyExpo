@@ -87,161 +87,165 @@ const registro = () => {
         setPasswordVisible(!passwordVisible);
     };
 
-    return (
-        <ScrollView contentContainerStyle={styles.scrollContainer}>
-            <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
-            <View style={styles.pageContainer}>
-                <View style={styles.headerContainer}>
-                    <Image
-                        source={{ uri: 'https://media3.giphy.com/media/fYxGOc3PHwLmvXcHCU/giphy.gif?cid=6c09b952kb94toej6cjhz1ufjwc9v4pme7m4o1f42s7k0njl&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s' }} 
-                        style={styles.gif}
-                    />
-                    <Text style={styles.header}>Registro</Text>
-                </View>
+return (
+<ScrollView contentContainerStyle={styles.scrollContainer}>
+    <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
+    <View style={styles.pageContainer}>
+        <View style={styles.headerContainer}>
+            <Image
+                source={{ uri: 'https://media3.giphy.com/media/fYxGOc3PHwLmvXcHCU/giphy.gif?cid=6c09b952kb94toej6cjhz1ufjwc9v4pme7m4o1f42s7k0njl&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s' }} 
+                style={styles.gif}
+            />
+            <Text style={styles.header}>Registro</Text>
+        </View>
 
-                <Text style={styles.label}>Ingresa tu nombre completo</Text>
+        <Text style={styles.label}>Ingresa tu nombre completo</Text>
+        <TextInput
+            style={styles.input}
+            placeholder="Nombre completo"
+            placeholderTextColor="#A6A6A6"
+            value={name}
+            onChangeText={setName}
+        />
+
+        <Text style={styles.label}>Ingresa tus apellidos</Text>
+        <TextInput
+            style={styles.input}
+            placeholder="Apellidos"
+            placeholderTextColor="#A6A6A6"
+            value={surname}
+            onChangeText={setSurname}
+        />
+
+        <Text style={styles.label}>Ingresa tu edad</Text>
+        <TextInput
+            style={styles.input}
+            placeholder="Edad"
+            placeholderTextColor="#A6A6A6"
+            keyboardType="numeric"
+            value={age}
+            onChangeText={handleAgeChange}
+            maxLength={3} // Limita la entrada a 3 caracteres
+        />
+
+        <Text style={styles.label}>Ingresa tu usuario</Text>
+        <TextInput
+            style={styles.input}
+            placeholder="Usuario"
+            placeholderTextColor="#A6A6A6"
+            value={username}
+            onChangeText={setUsername}
+        />
+
+        <Text style={styles.label}>Ingresa tu género</Text>
+        <View style={styles.pickerContainer}>
+            <Picker selectedValue={selectedGender}
+                style={styles.picker}
+                onValueChange={(itemValue) => setSelectedGender(itemValue)}
+                dropdownIconColor="#A6A6A6">
+                <Picker.Item label="Género" value="" color="#A6A6A6" />
+                <Picker.Item label="Masculino" value="male" />
+                <Picker.Item label="Femenino" value="female" />
+            </Picker>
+        </View>
+
+        <View style={styles.row}>
+            <View style={styles.column}>
+                <Text style={styles.label}>Teléfono</Text>
                 <TextInput
                     style={styles.input}
-                    placeholder="Nombre completo"
+                    placeholder="Número"
                     placeholderTextColor="#A6A6A6"
-                    value={name}
-                    onChangeText={setName}
+                    keyboardType="numeric" // Asegura que solo se muestren números en el teclado
+                    value={phone}
+                    onChangeText={handlePhoneChange}
+                    maxLength={10} // Limita la entrada a 10 caracteres
                 />
+            </View>
 
-                <Text style={styles.label}>Ingresa tus apellidos</Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Apellidos"
-                    placeholderTextColor="#A6A6A6"
-                    value={surname}
-                    onChangeText={setSurname}
-                />
-
-                <Text style={styles.label}>Ingresa tu edad</Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Edad"
-                    placeholderTextColor="#A6A6A6"
-                    keyboardType="numeric"
-                    value={age}
-                    onChangeText={handleAgeChange}
-                    maxLength={3} // Limita la entrada a 3 caracteres
-                />
-
-                <Text style={styles.label}>Ingresa tu usuario</Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Usuario"
-                    placeholderTextColor="#A6A6A6"
-                    value={username}
-                    onChangeText={setUsername}
-                />
-
-                <Text style={styles.label}>Ingresa tu género</Text>
-                <View style={styles.pickerContainer}>
-                    <Picker selectedValue={selectedGender}
-                        style={styles.picker}
-                        onValueChange={(itemValue) => setSelectedGender(itemValue)}
-                        dropdownIconColor="#A6A6A6">
-                        <Picker.Item label="Género" value="" color="#A6A6A6" />
-                        <Picker.Item label="Masculino" value="male" />
-                        <Picker.Item label="Femenino" value="female" />
-                    </Picker>
-                </View>
-
-                <View style={styles.row}>
-                    <View style={styles.column}>
-                        <Text style={styles.label}>Teléfono</Text>
-                        <TextInput
-                            style={styles.input}
-                            placeholder="Número"
-                            placeholderTextColor="#A6A6A6"
-                            keyboardType="numeric" // Asegura que solo se muestren números en el teclado
-                            value={phone}
-                            onChangeText={handlePhoneChange}
-                            maxLength={10} // Limita la entrada a 10 caracteres
-                        />
-                    </View>
-
-                    <View style={styles.column}>
-                        <Text style={styles.label}>Nacimiento</Text>
-                        <View style={styles.dateInputContainer}>
-                            <TextInput
-                                style={styles.dateInput}
-                                placeholder="dd/mm/aaaa"
-                                placeholderTextColor="#A6A6A6"
-                                value={birthDate}
-                                onChangeText={handleDateChange}
-                                keyboardType="numeric" // Asegura que solo se muestren números en el teclado
-                                maxLength={10} // Limita la entrada a 10 caracteres
-                            />
-                            <TouchableOpacity onPress={handleDateSelection} style={styles.dateIconContainer}>
-                                <Ionicons name="calendar-clear-outline" size={24} color="A6A6A6" />
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </View>
-
-                <Text style={styles.label}>Correo</Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Correo electrónico"
-                    placeholderTextColor="#A6A6A6"
-                    keyboardType="email-address"
-                    value={email}
-                    onChangeText={setEmail}
-                />
-
-                <Text style={styles.label}>Contraseña</Text>
-                <View style={styles.passwordContainer}>
+            <View style={styles.column}>
+                <Text style={styles.label}>Nacimiento</Text>
+                <View style={styles.dateInputContainer}>
                     <TextInput
-                        style={styles.input2}
-                        placeholder="Contraseña"
+                        style={styles.dateInput}
+                        placeholder="dd/mm/aaaa"
                         placeholderTextColor="#A6A6A6"
-                        secureTextEntry={!passwordVisible} // Mostrar u ocultar contraseña basado en el estado
-                        value={password}
-                        onChangeText={setPassword}
+                        value={birthDate}
+                        onChangeText={handleDateChange}
+                        keyboardType="numeric" // Asegura que solo se muestren números en el teclado
+                        maxLength={10} // Limita la entrada a 10 caracteres
                     />
-                    <TouchableOpacity onPress={togglePasswordVisibility} style={styles.passwordIconContainer}>
-                        <Ionicons 
-                            name={passwordVisible ? "eye-off-outline" : "eye-outline"} 
-                            size={24} 
-                            color="#A6A6A6" 
-                        />
+                    <TouchableOpacity onPress={handleDateSelection} style={styles.dateIconContainer}>
+                        <Ionicons name="calendar-clear-outline" size={24} color="A6A6A6" />
                     </TouchableOpacity>
                 </View>
-
-                <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-                    <Text style={styles.buttonText}>Enviar</Text>
-                </TouchableOpacity>
-
-                <CustomNavigator showLogin={true} showRegistro={false} />
-
-                <Text style={styles.footerText}>Polaina's Candys</Text>
-
-                {/* Modal de Alerta */}
-                <Modal
-                    transparent={true}
-                    visible={showAlert}
-                    animationType="slide"
-                    onRequestClose={() => setShowAlert(false)}
-                >
-                    <View style={styles.modalContainer}>
-                        <View style={styles.modalContent}>
-                            <Ionicons name="alert-circle-outline" size={40} color="#000000" />
-                            <Text style={styles.modalText}>Hay campos vacíos, revisa tu información para continuar.</Text>
-                            <Pressable
-                                style={styles.modalButton}
-                                onPress={() => setShowAlert(false)}
-                            >
-                                <Text style={styles.modalButtonText}>OK</Text>
-                            </Pressable>
-                        </View>
-                    </View>
-                </Modal>
             </View>
-        </ScrollView>
-    );
+        </View>
+
+        <Text style={styles.label}>Correo</Text>
+        <TextInput
+            style={styles.input}
+            placeholder="Correo electrónico"
+            placeholderTextColor="#A6A6A6"
+            keyboardType="email-address"
+            value={email}
+            onChangeText={setEmail}
+        />
+
+        <Text style={styles.label}>Contraseña</Text>
+        <View style={styles.passwordContainer}>
+            <TextInput
+                style={styles.input2}
+                placeholder="Contraseña"
+                placeholderTextColor="#A6A6A6"
+                secureTextEntry={!passwordVisible} // Mostrar u ocultar contraseña basado en el estado
+                value={password}
+                onChangeText={setPassword}
+            />
+            <TouchableOpacity onPress={togglePasswordVisibility} style={styles.passwordIconContainer}>
+                <Ionicons 
+                    name={passwordVisible ? "eye-off-outline" : "eye-outline"} 
+                    size={24} 
+                    color="#A6A6A6" 
+                />
+            </TouchableOpacity>
+        </View>
+
+        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+            <Text style={styles.buttonText}>Enviar</Text>
+        </TouchableOpacity>
+
+        <CustomNavigator showLinks={{
+            inicio: false, // Muestra el enlace de Inicio
+            registro: false, // Muestra el enlace de Registro
+            login: true, // No muestra el enlace de Login
+            }}/>
+
+        <Text style={styles.footerText}>Polaina's Candys</Text>
+
+        {/* Modal de Alerta */}
+        <Modal
+            transparent={true}
+            visible={showAlert}
+            animationType="slide"
+            onRequestClose={() => setShowAlert(false)}
+        >
+            <View style={styles.modalContainer}>
+                <View style={styles.modalContent}>
+                    <Ionicons name="alert-circle-outline" size={40} color="#000000" />
+                    <Text style={styles.modalText}>Hay campos vacíos, revisa tu información para continuar.</Text>
+                    <Pressable
+                        style={styles.modalButton}
+                        onPress={() => setShowAlert(false)}
+                    >
+                        <Text style={styles.modalButtonText}>OK</Text>
+                    </Pressable>
+                </View>
+            </View>
+        </Modal>
+    </View>
+</ScrollView>
+);
 };
 
 const styles = StyleSheet.create({

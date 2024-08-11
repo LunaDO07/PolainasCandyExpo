@@ -183,7 +183,7 @@ submitButton: {
 submitButtonText: {
     color: '#FFF',
     fontSize: 16,
-    fontWeight: 'bold',
+    fontFamily: 'Lailasemi',
 },
 });
 

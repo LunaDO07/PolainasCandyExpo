@@ -12,7 +12,7 @@ const ticketData = {
 return (
 <View style={styles.navbar}>
     <FontAwesome name="bars" size={24} color="#FFF" style={styles.menuButton} />
-    <Text style={styles.navbarTitle}>Polainas Candys</Text>
+    <Text style={styles.navbarTitle}>Polaina's Candys</Text>
     <View style={styles.cartContainer}>
         <FontAwesome name="shopping-cart" size={30} color="#FFF" />
     <View style={styles.cartBadge}>
@@ -37,10 +37,10 @@ menuButton: {
 },
 navbarTitle: {
     fontSize: 22,
-    fontWeight: 'bold',
     textAlign:'center',
     color: '#FFF',
     flex: 1,
+    fontFamily: 'Lailasemi',
 },
 cartContainer: {
     position: 'relative',

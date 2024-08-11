@@ -14,9 +14,9 @@ return (
     <View style={styles.container}>
     {/* Navbar superior */}
     <NavAdmn/>
-
     {/* Tabla de Logs */}
     <ScrollView contentContainerStyle={styles.tableContainer}>
+    <Text style={styles.tableHeaderNavbarTitle}>Logs de la aplicacion</Text>
         <View style={styles.tableHeader}>
         <Text style={[styles.tableHeaderText, styles.tableColumnDate]}>Fecha</Text>
         <Text style={[styles.tableHeaderText, styles.tableColumnAction]}>Acción</Text>
@@ -40,17 +40,16 @@ container: {
     backgroundColor: '#F4F4F4',
     paddingTop: StatusBar.currentHeight || 0,
 },
-navbar: {
-    backgroundColor: '#232F3E',
-    paddingVertical: 15,
-    paddingHorizontal: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: '#1D1D1D',
+tableHeaderNavbarTitle: {
+    fontSize: 18,
+    color: '#000000',
+    fontFamily:'Lailasemi',
+    textAlign:'center',
+    marginBottom:20,
 },
-navbarTitle: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: '#FFF',
+tittle:{
+    fontSize:20,
+    fontFamily:'Josefbold'
 },
 tableContainer: {
     padding: 20,
@@ -58,14 +57,15 @@ tableContainer: {
 },
 tableHeader: {
     flexDirection: 'row',
-    backgroundColor: '#E5E5E5',
+    backgroundColor: '#ffe1bd',
     padding: 10,
     borderRadius: 8,
 },
 tableHeaderText: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 15,
     color: '#333',
+    fontFamily:'Lailasemi',
+    textAlign:'center',
 },
 tableRow: {
     flexDirection: 'row',
@@ -74,14 +74,17 @@ tableRow: {
     borderBottomColor: '#E5E5E5',
 },
 tableRowText: {
-    fontSize: 14,
+    fontSize: 13,
     color: '#333',
+    fontFamily:'Laila',
 },
 tableColumnDate: {
     flex: 1,
+    
 },
 tableColumnAction: {
     flex: 2,
+    marginLeft:15,
 },
 tableColumnUser: {
     flex: 1,

@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
     },
     label: {
-        fontSize: 1,
+        fontSize: 14,
         fontWeight: '600',
         marginBottom: 5,
         color: '#333',
@@ -199,6 +199,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#ccc',
         fontSize: 14,
+        // fontFamily: 'Laila',
     },
     pickerContainer: {
         backgroundColor: '#FFF',
