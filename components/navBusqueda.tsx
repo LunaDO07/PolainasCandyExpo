@@ -79,7 +79,7 @@ const NavBusqueda = () => {
                                 <Text style={styles.drawerItem}>Categorias</Text>
                             </TouchableOpacity>
 
-                            <TouchableOpacity style={styles.drawerItemContainer} onPress={() => handleNavigation('/carrito')}>
+                            <TouchableOpacity style={styles.drawerItemContainer} onPress={() => handleNavigation('/cart')}>
                                 <Ionicons name='cart' size={24} color='rgb(0, 0, 0)' style={styles.drawerIcon} />
                                 <Text style={styles.drawerItem}>Carrito</Text>
                             </TouchableOpacity>

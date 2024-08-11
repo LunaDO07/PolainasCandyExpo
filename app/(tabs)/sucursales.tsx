@@ -1,10 +1,22 @@
 import { NavAdmn } from '@/components/NavAdmn';
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, TextInput, Image, Dimensions, StatusBar } from 'react-native';
+import { useRouter } from 'expo-router';
 
 const { width } = Dimensions.get('window'); // ancho de la pantalla
 
 const PolainasCandys = () => {
+
+const router = useRouter();
+
+const irSucursal = () => {
+    router.push('/tablaSucursales'); 
+}
+
+const irProductos = () => {
+    router.push('/tablaProductos'); 
+}
+
 return (
 <ScrollView 
 contentContainerStyle={styles.scrollContainer} 
@@ -50,11 +62,11 @@ style={styles.scrollView}
 
 <View style={{flexDirection:'row'}}>
     {/* Botón "Administrar Sucursale" */}
-    <TouchableOpacity style={styles.adminButton}>
+    <TouchableOpacity style={styles.adminButton} onPress={irSucursal}>
     <Text style={styles.adminButtonText}>Sucursales</Text>
     </TouchableOpacity>
 
-    <TouchableOpacity style={styles.adminButton}>
+    <TouchableOpacity style={styles.adminButton} onPress={irProductos}>
     <Text style={styles.adminButtonText}>Productos</Text>
     </TouchableOpacity>
 </View>

@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Dimensions, StatusBar } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import NavSinBusqueda  from '../../components/navSinBusqueda';
+import { useRouter } from 'expo-router';
 
 const { width } = Dimensions.get('window'); // Ancho de la pantalla
 
@@ -23,6 +24,11 @@ const ticketData = {
     costoEnvio: 2.00,
     total: 42.00,
 };
+const router = useRouter();
+ // linea de redireccion
+const handleCheckout = () => {
+    router.push('/indexCliente'); 
+}
 
 return (
     <View style={styles.container}>
@@ -78,7 +84,7 @@ return (
             <Text style={styles.totalLabel}>Total:</Text>
             <Text style={styles.totalValue}>${ticketData.total.toFixed(2)}</Text>
         </View>
-        <TouchableOpacity style={styles.submitButton}>
+        <TouchableOpacity style={styles.submitButton} onPress={handleCheckout}>
             <Text style={styles.submitButtonText}>Salir</Text>
         </TouchableOpacity>
         </View>

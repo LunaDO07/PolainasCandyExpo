@@ -3,8 +3,11 @@ import { Text, View, TextInput, TouchableOpacity, StyleSheet, ScrollView, Image,
 import { Picker } from '@react-native-picker/picker';
 import { Ionicons } from '@expo/vector-icons';
 import { CustomNavigator } from '../../components/navigation/CustomNavigator';
+import { useRouter } from 'expo-router';
 
 const registro = () => {
+    const router = useRouter();
+
     const [selectedGender, setSelectedGender] = useState('');
     const [birthDate, setBirthDate] = useState('');
     const [name, setName] = useState('');
@@ -33,7 +36,8 @@ const registro = () => {
 
     const handleSubmit = () => {
         if (validateFields()) {
-            // lógica para enviar el formulario
+            // envio a login
+            router.push('/login'); 
             console.log("Formulario enviado");
         }
     };

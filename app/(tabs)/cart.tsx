@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Image, Modal, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Image, Modal } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 import NavBusqueda from '../../components/navBusqueda';
 
 interface CartItemType {
@@ -25,14 +26,13 @@ const CartItem: React.FC<{
         </View>
         <View style={styles.actionsContainer}>
             <View style={styles.quantityContainer}>
-            <TouchableOpacity onPress={onRemove} style={styles.quantityButton}>
+                <TouchableOpacity onPress={onRemove} style={styles.quantityButton}>
                     <Text style={styles.quantityButtonText}>-</Text>
                 </TouchableOpacity>
                 <Text style={styles.quantityText}>{item.quantity}</Text>
                 <TouchableOpacity onPress={onAdd} style={styles.quantityButton}>
                     <Text style={styles.quantityButtonText}>+</Text>
                 </TouchableOpacity>
-                
             </View>
             <TouchableOpacity onPress={onDelete} style={styles.deleteButton}>
                 <Ionicons name="trash-outline" size={24} color="#666" />
@@ -49,6 +49,7 @@ const Cart: React.FC = () => {
 
     const [showConfirmationModal, setShowConfirmationModal] = useState<boolean>(false);
     const [itemToDelete, setItemToDelete] = useState<CartItemType | null>(null);
+    const router = useRouter();
 
     useEffect(() => {
         if (itemToDelete && itemToDelete.quantity === 0) {
@@ -90,6 +91,11 @@ const Cart: React.FC = () => {
 
     const totalAmount = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
+    // linea de redireccion
+    const handleCheckout = () => {
+        router.push('/datosUser'); // Cambia el path según tu ruta deseada
+    };
+
     return (
         <View style={styles.container}>
             <NavBusqueda />
@@ -107,7 +113,7 @@ const Cart: React.FC = () => {
 
             <View style={styles.footer}>
                 <Text style={styles.totalText}>Total: ${totalAmount.toFixed(2)}</Text>
-                <TouchableOpacity style={styles.checkoutButton}>
+                <TouchableOpacity style={styles.checkoutButton} onPress={handleCheckout}>
                     <Text style={styles.checkoutButtonText}>Proceder con el Pago</Text>
                 </TouchableOpacity>
             </View>
@@ -136,6 +142,7 @@ const Cart: React.FC = () => {
         </View>
     );
 };
+
 
 const styles = StyleSheet.create({
     container: {

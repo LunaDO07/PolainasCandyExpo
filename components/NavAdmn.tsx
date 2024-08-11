@@ -1,10 +1,19 @@
 import React from 'react'
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { useRouter } from 'expo-router';
+
 
 export const NavAdmn = () => {
+const router = useRouter();
+
+const handleCheckout = () => {
+    router.push('/sucursales'); 
+}
 return (
 <View style={styles.navbar}>
-    <Image source={require('../assets/images/2.png')} style={styles.logo} />
+<TouchableOpacity  onPress={handleCheckout}>
+<Image source={require('../assets/images/2.png')} style={styles.logo} />
+</TouchableOpacity>
     <Text style={styles.navbarTitle}>Polaina's Candys</Text>
 </View>
     

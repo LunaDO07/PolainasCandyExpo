@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Pressable, ScrollV
 import { Picker } from '@react-native-picker/picker';
 import NavSinBusqueda from '../../components/navSinBusqueda';
 import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 
 const { width } = Dimensions.get('window'); // Ancho de la pantalla
 
@@ -31,11 +32,12 @@ const ConfirmacionScreen = () => {
         setPostalCode(text.replace(/[^0-9]/g, ''));
     };
 
+    const router = useRouter();
     const handleSubmit = () => {
         if (!number || !postalCode) {
             setShowModal(true);
         } else {
-            // Procesar el envío del formulario
+            router.push('/ticket'); 
             Alert.alert('Formulario enviado', 'Los datos se han enviado correctamente.');
         }
     };
@@ -121,7 +123,7 @@ const ConfirmacionScreen = () => {
                     </View>
                 </View>
 
-                <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
+                <TouchableOpacity style={styles.submitButton} onPress={handleSubmit} >
                     <Text style={styles.submitButtonText}>Enviar</Text>
                 </TouchableOpacity>
             </ScrollView>

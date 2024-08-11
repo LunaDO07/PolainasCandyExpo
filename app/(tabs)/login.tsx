@@ -3,8 +3,10 @@ import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity, Alert } fr
 import InputWithIcon from '../../components/InputWithIcon';
 import CustomAlert from '../../components/Alert'; 
 import { CustomNavigator } from '../../components/navigation/CustomNavigator';
+import { useRouter } from 'expo-router';
 
 function Login() {
+    const router = useRouter();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [alertVisible, setAlertVisible] = useState(false);
@@ -30,7 +32,7 @@ function Login() {
             setAlertMessage(formattedMessage);
             setAlertVisible(true);
         } else {
-            // Proceder con la lógica de inicio de sesión
+            router.push('/registro'); 
             Alert.alert('Inicio de sesión', 'Lógica de inicio de sesión aquí');
         }
     };

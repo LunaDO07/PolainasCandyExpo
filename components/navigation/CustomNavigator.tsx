@@ -34,7 +34,6 @@ return (
     {showLinks.login && (
         <Link href="/login" style={styles.link}>
         <View style={styles.linkContainer}>
-            <Ionicons name="log-in-outline" size={24} color="#333" style={styles.icon} />
             <Text style={styles.linkText}>
             ¿Ya tienes cuenta? <Text style={styles.linkHighlight}>Inicia sesión</Text>
             </Text>
