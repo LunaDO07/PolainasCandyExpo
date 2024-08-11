@@ -8,8 +8,11 @@ import { Ionicons } from '@expo/vector-icons';
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
-  const hiddenScreens = ["login"]; 
-  // const hiddenScreens = ["login,"index","registro","sucursales",]; 
+  const hiddenScreens = ["index","login","categorias",]; 
+  // Al terminar DESCOMENTAR ESTAS LINEA
+
+  // const hiddenScreens = ["login,"index","registro","sucursales","indexCliente",
+  // "categorias","cart","datosUser","ticket","tablaSucursales","logs","tablaProductos"]; 
 
   return (
     <Tabs
@@ -23,7 +26,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Banner',
+          title: 'NOir',
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name={focused ? 'journal' : 'journal-outline'} color={color} />
           ),

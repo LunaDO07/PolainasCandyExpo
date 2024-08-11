@@ -1,45 +1,101 @@
-import { Image, Text, StyleSheet, Platform } from 'react-native';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { Tabs } from 'expo-router';
+import { Image, Text, StyleSheet, View, Animated } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import LottieView from 'lottie-react-native'; // Importa LottieView
+import { useRouter } from 'expo-router';
+import { useColorScheme } from '@/hooks/useColorScheme';
 
-export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#000000' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/2.png')}
-          style={styles.Logo}
+const TypingText = ({ text }: { text: string }) => {
+  const [displayedText, setDisplayedText] = useState('');
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (index < text.length) {
+      const timer = setInterval(() => {
+        setDisplayedText((prev) => prev + text[index]);
+        setIndex((prev) => prev + 1);
+      }, 100); // Tiempo entre letras en milisegundos
+
+      return () => clearInterval(timer);
+    }
+  }, [index, text]);
+
+  useEffect(() => {
+    setIndex(0); // Resetear el índice cuando cambie el texto
+    setDisplayedText(''); // Limpiar el texto mostrado
+  }, [text]);
+
+  return <Text style={styles.welcomeText}>{displayedText}</Text>;
+};
+
+const TabLayout = () => {
+  const [isLoading, setIsLoading] = useState(true); // Estado para la carga
+  const [fadeAnim] = useState(new Animated.Value(0)); // Estado para la animación de texto
+  const router = useRouter();
+  const colorScheme = useColorScheme();
+
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 2000, // Duración de la animación en milisegundos
+      useNativeDriver: true,
+    }).start();
+
+    setTimeout(() => {
+      setIsLoading(false);
+      router.push('/login'); // Redirige al login después de la carga
+    }, 3500);
+  }, [router, fadeAnim]);
+
+  if (isLoading) {
+    return (
+      <View style={styles.container}>
+        <View style={styles.welcomeContainer}>
+          <TypingText text="Polainas Candys" />
+          <Image source={require('../../assets/images/2.png')} style={styles.logoImage} />
+        </View>
+        <LottieView
+          source={require('../../assets/lollipop.json')}
+          autoPlay
+          loop
+          style={styles.loadingAnimation}
         />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Polainas Candys!</ThemedText>
-        
-      </ThemedView>
-      <ThemedView>
-        <Text style={styles.texto}>Ignorar pagina - En proceso :D</Text>
-      </ThemedView>
-      
-    </ParallaxScrollView>
-  );
-}
+        <Text style={styles.loadingText}>Cargando...</Text>
+      </View>
+    );
+  }
+
+  return null; // Renderiza null cuando no está cargando
+};
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
+  container: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
-    gap: 8,
-  }, 
-  Logo: {
-    height: 300,
-    width: 295,
-    bottom: 0,
-    left: 0,
+    backgroundColor: '#ECECEC',
   },
-  texto:{
-    marginTop:30,
-    fontSize:18,
-  }
+  welcomeContainer: {
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  logoImage: {
+    height: 212,
+    width: 209,
+  },
+  welcomeText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginVertical: 10,
+  },
+  loadingAnimation: {
+    width: 150,
+    height: 150,
+  },
+  loadingText: {
+    marginTop: 10,
+    fontSize: 18,
+    color: '#000',
+  },
 });
+
+export default TabLayout;
