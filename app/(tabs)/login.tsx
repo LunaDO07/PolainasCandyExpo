@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import InputWithIcon from '../../components/InputWithIcon';
 import CustomAlert from '../../components/Alert'; 
-import { Link } from 'expo-router';
+import { CustomNavigator } from '../../components/navigation/CustomNavigator';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -71,11 +71,7 @@ function Login() {
                 </TouchableOpacity>
             </View>
 
-            <Link href="/registro" style={styles.registrotext}>
-                    <Text>
-                    ¿No tienes cuenta? <Text style={styles.registrocolor}>Regístrate</Text>
-                    </Text>
-                </Link>
+            <CustomNavigator showLogin={false} showRegistro={true} />
 
             <CustomAlert
                 visible={alertVisible}
@@ -171,6 +167,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: '#000000',
         fontFamily: 'Josefinmedium',
+        marginTop:30,
     },
     registrocolor: {
         color: '#113696',

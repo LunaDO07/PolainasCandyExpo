@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Text, View, TextInput, TouchableOpacity, StyleSheet, ScrollView, Image, Modal, Pressable, StatusBar } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { Ionicons } from '@expo/vector-icons';
-import { Link } from 'expo-router';
+import { CustomNavigator } from '../../components/navigation/CustomNavigator';
 
 const registro = () => {
     const [selectedGender, setSelectedGender] = useState('');
@@ -215,11 +215,7 @@ const registro = () => {
                     <Text style={styles.buttonText}>Enviar</Text>
                 </TouchableOpacity>
 
-                <Link href="/login" style={styles.link}>
-                    <Text style={styles.linkText}>
-                        ¿Ya tienes cuenta? <Text style={styles.linkHighlight}>Inicia sesión</Text>
-                    </Text>
-                </Link>
+                <CustomNavigator showLogin={true} showRegistro={false} />
 
                 <Text style={styles.footerText}>Polaina's Candys</Text>
 
