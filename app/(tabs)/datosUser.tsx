@@ -155,8 +155,8 @@ const ConfirmacionScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F4F4F4',
-        paddingTop: StatusBar.currentHeight || 0, // Añade padding superior para evitar la barra de estado
+        backgroundColor: '#ffffff',
+        // paddingTop: StatusBar.currentHeight || 0, // Añade padding superior para evitar la barra de estado
     },
     formContainer: {
         padding: 20,
@@ -172,8 +172,10 @@ const styles = StyleSheet.create({
         height: 3,
         backgroundColor: '#d7d7d7',
         marginVertical: 10,
+        marginTop:25,
     },
     inputGroup: {
+        marginTop:10,
         marginBottom: 15,
         marginHorizontal: 15,
     },
