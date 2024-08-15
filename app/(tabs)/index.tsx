@@ -13,7 +13,7 @@ const TypingText = ({ text }: { text: string }) => {
       const timer = setInterval(() => {
         setDisplayedText((prev) => prev + text[index]);
         setIndex((prev) => prev + 1);
-      }, 100); // Tiempo entre letras en milisegundos
+      }, 200); // Tiempo entre letras en milisegundos
 
       return () => clearInterval(timer);
     }
@@ -36,14 +36,14 @@ const TabLayout = () => {
   useEffect(() => {
     Animated.timing(fadeAnim, {
       toValue: 1,
-      duration: 2000, // Duración de la animación en milisegundos
+      duration: 4200, // Duración de la animación en milisegundos
       useNativeDriver: true,
     }).start();
 
     setTimeout(() => {
       setIsLoading(false);
       router.push('/login'); // Redirige al login después de la carga
-    }, 3500);
+    }, 4200);
   }, [router, fadeAnim]);
 
   if (isLoading) {

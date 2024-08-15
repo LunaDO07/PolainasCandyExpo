@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, ScrollView, StyleSheet, StatusBar } from 'react-native';
 import { NavAdmn } from '../../components/NavAdmn';
 
-const LogsScreen = () => {
+const Logs = () => {
 const logs = [
     { date: '2024-08-06', action: 'Compra realizada', user: 'Usuario1' },
     { date: '2024-08-05', action: 'Registro completado', user: 'Usuario2' },
@@ -91,4 +91,4 @@ tableColumnUser: {
 },
 });
 
-export default LogsScreen;
+export default Logs;

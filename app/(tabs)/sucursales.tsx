@@ -1,4 +1,4 @@
-import { NavAdmn } from '@/components/NavAdmn';
+import { NavAdmn } from '../../components/NavAdmn';
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, TextInput, Image, Dimensions, StatusBar } from 'react-native';
 import { useRouter } from 'expo-router';
@@ -73,6 +73,7 @@ style={styles.scrollView}
 </View>
 
 {/* Navbar inferior con íconos de logs y usuario */}
+{/* <BottomNav/> */}
 </ScrollView>
 );
 };

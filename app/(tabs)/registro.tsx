@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { CustomNavigator } from '../../components/navigation/CustomNavigator';
 import { useRouter } from 'expo-router';
 
-const registro = () => {
+const Registro = () => {
     const router = useRouter();
 
     const [selectedGender, setSelectedGender] = useState('');
@@ -445,4 +445,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default registro;
+export default Registro;

@@ -45,6 +45,7 @@ const Cart: React.FC = () => {
     const [cartItems, setCartItems] = useState<CartItemType[]>([
         { id: 1, name: 'Picafresas', price: 10.00, image: 'https://loveveg.mx/app/uploads/2021/11/Mesa-de-trabajo-58-711x1024.jpg', quantity: 1 },
         { id: 2, name: 'Aciduladito', price: 20.00, image: 'https://http2.mlstatic.com/D_NQ_NP_787132-MLU73865457966_012024-O.webp', quantity: 2 },
+    
     ]);
 
     const [showConfirmationModal, setShowConfirmationModal] = useState<boolean>(false);
