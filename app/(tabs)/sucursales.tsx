@@ -73,7 +73,7 @@ style={styles.scrollView}
 </View>
 
 {/* Navbar inferior con íconos de logs y usuario */}
-{/* <BottomNav/> */}
+    
 </ScrollView>
 );
 };

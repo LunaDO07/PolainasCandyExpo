@@ -88,6 +88,11 @@ const NavBusqueda = () => {
                                 <Ionicons name='person' size={24} color='rgb(0, 0, 0)' style={styles.drawerIcon} />
                                 <Text style={styles.drawerItem}>Datos de envio</Text>
                             </TouchableOpacity>
+
+                            <TouchableOpacity style={styles.drawerItemContainer} onPress={() => handleNavigation('/login')}>
+                                <Ionicons name='log-out' size={24} color='rgb(0, 0, 0)' style={styles.drawerIcon} />
+                                <Text style={styles.drawerItem}>Cerrar Sesión</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 </View>
