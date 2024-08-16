@@ -146,6 +146,7 @@ const styles = StyleSheet.create({
         // paddingTop: StatusBar.currentHeight || 0, // Añade padding superior para evitar la barra de estado
     },
     formContainer: {
+        paddingTop:150,
         padding: 20,
     },
     message: {

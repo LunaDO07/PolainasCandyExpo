@@ -10,9 +10,7 @@ export default function TabLayout() {
 
   const hiddenScreens = ["index","login","categorias",]; 
   // Al terminar DESCOMENTAR ESTAS LINEA
-
-  // const hiddenScreens = ["login,"index","registro","sucursales","indexCliente",
-  // "categorias","cart","datosUser","ticket","tablaSucursales","logs","tablaProductos"]; 
+  // const hiddenScreens = ["login","index","registro","sucursales","indexCliente","categorias","cart","datosUser","ticket","tablaSucursales","logs","tablaProductos"]; 
 
   return (
     <Tabs
