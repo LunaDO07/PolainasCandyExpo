@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, FlatList, Dimensions, ScrollView, TouchableOpacity, StatusBar, Modal, TextInput } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Dimensions, ScrollView, TouchableOpacity, StatusBar, Modal, TextInput, Image, Button } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { FontAwesome } from '@expo/vector-icons';
 import { NavAdmn } from '../../components/NavAdmn';
+import * as ImagePicker from 'expo-image-picker';
 
 const { width } = Dimensions.get('window'); // Ancho de la pantalla
 
 // Datos de ejemplo
-const data = [
-{ id: '1', nombre: 'Producto A', descripcion: 'Descripción A', peso: '500g', piezas: '10', precio: '$100', sucursal: 'Sucursal 1', existencias: '20', categoria: 'Categoría A', marca: 'Marca A' },
-{ id: '2', nombre: 'Producto B', descripcion: 'Descripción B', peso: '250g', piezas: '5', precio: '$50', sucursal: 'Sucursal 2', existencias: '30', categoria: 'Categoría B', marca: 'Marca B' },
-{ id: '3', nombre: 'Producto C', descripcion: 'Descripción C', peso: '1kg', piezas: '15', precio: '$200', sucursal: 'Sucursal 3', existencias: '25', categoria: 'Categoría C', marca: 'Marca C' },
-{ id: '4', nombre: 'Producto D', descripcion: 'Descripción D', peso: '750g', piezas: '8', precio: '$150', sucursal: 'Sucursal 4', existencias: '18', categoria: 'Categoría D', marca: 'Marca D' },
-{ id: '5', nombre: 'Producto E', descripcion: 'Descripción E', peso: '300g', piezas: '12', precio: '$75', sucursal: 'Sucursal 5', existencias: '22', categoria: 'Categoría E', marca: 'Marca E' },
-{ id: '6', nombre: 'Producto F', descripcion: 'Descripción F', peso: '600g', piezas: '7', precio: '$120', sucursal: 'Sucursal 6', existencias: '28', categoria: 'Categoría F', marca: 'Marca F' },
+const initialData = [
+{ id: '1', nombre: 'Producto A', descripcion: 'Descripción A', peso: '500g', piezas: '10', precio: '$100', sucursal: 'Sucursal 1', existencias: '20', categoria: 'Categoría A', marca: 'Marca A', image: null },
+// Otros productos...
 ];
 
 const TablaProductos: React.FC = () => {
@@ -29,29 +26,60 @@ const [newProduct, setNewProduct] = useState<any>({
     sucursal: '',
     existencias: '',
     categoria: '',
-    marca: ''
+    marca: '',
+    image: null
 });
+const [data, setData] = useState(initialData);
 
 const handleDelete = (id: string) => {
-    console.log('Eliminar registro con ID:', id);
+    setData(data.filter(item => item.id !== id));
 };
 
-const handleEdit = (item: typeof data[0]) => {
+const handleEdit = (item: typeof initialData[0]) => {
     setSelectedItem(item);
     setModalVisible(true);
 };
 
 const handleSave = () => {
-    console.log('Guardar registro', selectedItem);
+    if (selectedItem) {
+    setData(data.map(item => item.id === selectedItem.id ? selectedItem : item));
+    }
     setModalVisible(false);
 };
 
 const handleAddProduct = () => {
-    console.log('Agregar nuevo producto', newProduct);
+    setData([...data, { ...newProduct, id: (data.length + 1).toString() }]);
+    setNewProduct({ nombre: '', descripcion: '', peso: '', piezas: '', precio: '', sucursal: '', existencias: '', categoria: '', marca: '', image: null });
     setAddProductModalVisible(false);
 };
 
-const renderItem = ({ item }: { item: typeof data[0] }) => (
+const pickImage = async (setter: React.Dispatch<React.SetStateAction<string | null>>) => {
+    // Solicitar permisos
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== 'granted') {
+    alert('Lo siento, necesitamos permisos para acceder a la galería de fotos.');
+    return;
+    }
+
+    try {
+    let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+    });
+
+    if (!result.canceled && result.assets && result.assets.length > 0) {
+        setter(result.assets[0].uri);
+    } else {
+        console.log("Image selection was canceled or no assets found.");
+    }
+    } catch (error) {
+    console.error("Error al abrir la galería de fotos:", error);
+    }
+};
+
+const renderItem = ({ item }: { item: typeof initialData[0] }) => (
     <View style={styles.row}>
     <Text style={styles.cell}>{item.id}</Text>
     <Text style={styles.cell}>{item.nombre}</Text>
@@ -63,6 +91,7 @@ const renderItem = ({ item }: { item: typeof data[0] }) => (
     <Text style={styles.cell}>{item.existencias}</Text>
     <Text style={styles.cell}>{item.categoria}</Text>
     <Text style={styles.cell}>{item.marca}</Text>
+    {item.image && <Image source={{ uri: item.image }} style={styles.image} />}
     <View style={styles.actions}>
         <TouchableOpacity onPress={() => handleEdit(item)} style={styles.actionButton}>
         <FontAwesome name="edit" size={24} color="#91918F" />
@@ -77,7 +106,7 @@ const renderItem = ({ item }: { item: typeof data[0] }) => (
 return (
     <View style={styles.container}>
     {/* Navbar superior */}
-    <NavAdmn/>
+    <NavAdmn />
 
     {/* Encabezado de la tabla como Navbar */}
     <View style={styles.tableHeaderNavbar}>
@@ -108,6 +137,7 @@ return (
             <Text style={[styles.tableHeaderText, styles.tableColumnExistencias]}>Existencias</Text>
             <Text style={[styles.tableHeaderText, styles.tableColumnCategoria]}>Categoría</Text>
             <Text style={[styles.tableHeaderText, styles.tableColumnMarca]}>Marca</Text>
+            <Text style={[styles.tableHeaderText, styles.tableColumnImagen]}>Imagen</Text>
             <Text style={[styles.tableHeaderText, styles.tableColumnAcciones]}>Acciones</Text>
             </View>
             {/* Lista de registros */}
@@ -152,15 +182,15 @@ return (
             <TextInput
             style={styles.modalInput}
             placeholder="Piezas"
-            keyboardType="numeric" 
+            keyboardType="numeric"
             value={selectedItem?.piezas}
             onChangeText={(text) => setSelectedItem({ ...selectedItem, piezas: text })}
             />
             <TextInput
             style={styles.modalInput}
             placeholder="Precio"
+            keyboardType="numeric"
             value={selectedItem?.precio}
-            keyboardType="numeric" 
             onChangeText={(text) => setSelectedItem({ ...selectedItem, precio: text })}
             />
             <TextInput
@@ -172,7 +202,7 @@ return (
             <TextInput
             style={styles.modalInput}
             placeholder="Existencias"
-            keyboardType="numeric" 
+            keyboardType="numeric"
             value={selectedItem?.existencias}
             onChangeText={(text) => setSelectedItem({ ...selectedItem, existencias: text })}
             />
@@ -188,12 +218,16 @@ return (
             value={selectedItem?.marca}
             onChangeText={(text) => setSelectedItem({ ...selectedItem, marca: text })}
             />
+            <TouchableOpacity onPress={() => pickImage((uri) => setSelectedItem({ ...selectedItem, image: uri }))} style={styles.pickImageButton}>
+            <Text style={styles.pickImageButtonText}>Seleccionar Imagen</Text>
+            </TouchableOpacity>
+            {selectedItem?.image && <Image source={{ uri: selectedItem.image }} style={styles.image} />}
             <View style={styles.modalButtons}>
-            <TouchableOpacity onPress={handleSave} style={[styles.modalButton, styles.saveButton]}>
+            <TouchableOpacity onPress={handleSave} style={styles.saveButton}>
                 <Text style={styles.buttonText}>Guardar</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => setModalVisible(false)} style={[styles.modalButton, styles.cancelButton]}>
-                <Text style={styles.buttonText}>Cerrar</Text>
+            <TouchableOpacity onPress={() => setModalVisible(false)} style={styles.cancelButton}>
+                <Text style={styles.buttonText}>Cancelar</Text>
             </TouchableOpacity>
             </View>
         </View>
@@ -209,7 +243,7 @@ return (
     >
         <View style={styles.modalOverlay}>
         <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>Agregar Nuevo Producto</Text>
+            <Text style={styles.modalTitle}>Agregar Producto</Text>
             <TextInput
             style={styles.modalInput}
             placeholder="Nombre"
@@ -231,12 +265,14 @@ return (
             <TextInput
             style={styles.modalInput}
             placeholder="Piezas"
+            keyboardType="numeric"
             value={newProduct.piezas}
             onChangeText={(text) => setNewProduct({ ...newProduct, piezas: text })}
             />
             <TextInput
             style={styles.modalInput}
             placeholder="Precio"
+            keyboardType="numeric"
             value={newProduct.precio}
             onChangeText={(text) => setNewProduct({ ...newProduct, precio: text })}
             />
@@ -249,7 +285,7 @@ return (
             <TextInput
             style={styles.modalInput}
             placeholder="Existencias"
-            keyboardType="numeric" 
+            keyboardType="numeric"
             value={newProduct.existencias}
             onChangeText={(text) => setNewProduct({ ...newProduct, existencias: text })}
             />
@@ -265,22 +301,26 @@ return (
             value={newProduct.marca}
             onChangeText={(text) => setNewProduct({ ...newProduct, marca: text })}
             />
+            <TouchableOpacity onPress={() => pickImage((uri) => setNewProduct({ ...newProduct, image: uri }))} style={styles.pickImageButton}>
+            <Text style={styles.pickImageButtonText}>Seleccionar Imagen</Text>
+            </TouchableOpacity>
+            {newProduct.image && <Image source={{ uri: newProduct.image }} style={styles.image} />}
             <View style={styles.modalButtons}>
-            <TouchableOpacity onPress={handleAddProduct} style={[styles.modalButton, styles.saveButton]}>
+            <TouchableOpacity onPress={handleAddProduct} style={styles.saveButton}>
                 <Text style={styles.buttonText}>Agregar</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => setAddProductModalVisible(false)} style={[styles.modalButton, styles.cancelButton]}>
-                <Text style={styles.buttonText}>Cerrar</Text>
+            <TouchableOpacity onPress={() => setAddProductModalVisible(false)} style={styles.cancelButton}>
+                <Text style={styles.buttonText}>Cancelar</Text>
             </TouchableOpacity>
             </View>
         </View>
         </View>
     </Modal>
+
     </View>
 );
 };
 
-// Estilos
 const styles = StyleSheet.create({
 container: {
     flex: 1,
@@ -382,6 +422,7 @@ tableColumnCategoria: {
 tableColumnMarca: {
     flex: 2,
 },
+tableColumnImagen:{ flex: 1 },
 tableColumnAcciones: {
     flex: 2,
 },
@@ -450,20 +491,42 @@ modalButtons: {
 modalButton: {
     flex: 1,
     marginHorizontal: 5,
-    paddingVertical: 10,
+   padding:20,
     alignItems: 'center',
     borderRadius:20,
 },
 saveButton: {
     backgroundColor: '#b781b3',  // Mismo color que el botón de agregar
+    padding:10,
+    borderRadius:20,
 },
 cancelButton: {
     backgroundColor: '#454545',
+    padding:10,
+    borderRadius:20,
+    
 },
 buttonText: {
     color: '#ffffff',
-    fontWeight: 'bold',
+    fontFamily:'Lailasemi',
+},
+pickImageButton: {
+    backgroundColor: '#4ca3af',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginBottom: 10,
+},
+pickImageButtonText: {
+    color: '#FFF',
+    fontSize: 16,
+},
+image: {
+    width: 50,
+    height: 50,
+    borderRadius: 5,
 },
 });
 
-export default TablaProductos;
+    export default TablaProductos;

@@ -18,7 +18,8 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#ffffff",
+        "permissions": ["CAMERA", "READ_EXTERNAL_STORAGE","permissions", "CAMERA_ROLL"]
       }
     },
     "web": {

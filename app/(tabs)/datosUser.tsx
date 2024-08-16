@@ -60,20 +60,7 @@ const ConfirmacionScreen = () => {
                 <View style={styles.separator} />
 
                 {/* Campos del formulario */}
-                <View style={styles.inputGroup}>
-                    <Text style={styles.label}>Sexo:</Text>
-                    <View style={styles.pickerContainer}>
-                        <Picker
-                            selectedValue={selectedGender}
-                            onValueChange={handleGenderChange}
-                            style={styles.picker}
-                        >
-                            <Picker.Item label="Seleccionar género" value="" />
-                            <Picker.Item label="Masculino" value="masculino" />
-                            <Picker.Item label="Femenino" value="femenino" />
-                        </Picker>
-                    </View>
-                </View>
+
                 <View style={styles.inputGroup}>
                     <Text style={styles.label}>Calle:</Text>
                     <TextInput style={styles.input} placeholder="Ingrese su calle" />
