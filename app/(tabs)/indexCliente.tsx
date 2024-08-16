@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, ScrollView, Modal, Alert, Dimensions , TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView, Modal, Alert, Dimensions, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import NavBusqueda from '../../components/navBusqueda';
 import { ImageSourcePropType } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -33,19 +34,23 @@ const splitItemsIntoRows = (items: CategoryItem[], itemsPerRow: number) => {
     return rows;
 };
 
-const rows = splitItemsIntoRows(items, 4);
+const IndexCliente: React.FC = () => {
+    const router = useRouter(); // Mover la llamada a useRouter aquí
 
-type Product = {
-    id: number;
-    name: string;
-    price: string;
-    image: string;
-    description: string;
+    const handleCheckout = () => {
+        router.push('/categorias'); // Cambia el path según tu ruta deseada
     };
 
+    const rows = splitItemsIntoRows(items, 4);
 
+    type Product = {
+        id: number;
+        name: string;
+        price: string;
+        image: string;
+        description: string;
+    };
 
-const IndexCliente: React.FC = () => {
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [modalVisible, setModalVisible] = useState(false);
 
@@ -56,8 +61,7 @@ const IndexCliente: React.FC = () => {
         { id: 4, name: 'Producto 4', price: '$18.00', image: 'https://via.placeholder.com/150', description: 'Descripción del Producto 4' },
         // Agrega más productos aquí
     ];
-    
-    
+
     const handleProductPress = (product: Product) => {
         setSelectedProduct(product);
     };
@@ -67,7 +71,6 @@ const IndexCliente: React.FC = () => {
         setModalVisible(true);
     };
 
-    
     const closeModal = () => {
         setSelectedProduct(null);
     };
@@ -76,80 +79,78 @@ const IndexCliente: React.FC = () => {
         // Cierra el modal
         closeModal();
         // Muestra un mensaje de éxito
-        Alert.alert('Producto añadido', ' El Producto se añadio al carrito de compras');
+        Alert.alert('Producto añadido', ' El Producto se añadió al carrito de compras');
     };
 
-return (
-    <View style={styles.container}>
-        <NavBusqueda/>
-        <ScrollView contentContainerStyle={styles.scrollContainer}>
-    
-{/* Carrusel de imágenes */}
-    <ScrollView horizontal pagingEnabled style={styles.carouselContainer}>
-        <Image source={require('../../assets/images/carrucel13.webp')} style={styles.carouselImage} resizeMode="cover" />
-        <Image source={require('../../assets/images/carrucel11.jpg')} style={styles.carouselImage}  resizeMode="cover"/>
-        <Image source={require('../../assets/images/carrucel1.webp')} style={styles.carouselImage}resizeMode="cover"/>
-    </ScrollView>
+    return (
+        <View style={styles.container}>
+            <NavBusqueda />
+            <ScrollView contentContainerStyle={styles.scrollContainer}>
 
+                {/* Carrusel de imágenes */}
+                <ScrollView horizontal pagingEnabled style={styles.carouselContainer}>
+                    <Image source={require('../../assets/images/carrucel13.webp')} style={styles.carouselImage} resizeMode="cover" />
+                    <Image source={require('../../assets/images/carrucel11.jpg')} style={styles.carouselImage} resizeMode="cover" />
+                    <Image source={require('../../assets/images/carrucel1.webp')} style={styles.carouselImage} resizeMode="cover" />
+                </ScrollView>
 
-    {/* Sección de categorías */}
-    <View style={styles.section}>
-        
-    <View style={{flexDirection:'row'}}>
-        <View style={styles.marker} /> 
-        <Text style={styles.sectionTitle}>Categorías de Dulces</Text>
-    </View>
-            
-                {rows.map((row, index) => (
-                    <View key={index} style={styles.categoriesRow}>
-                        {row.map(item => (
-                            <TouchableOpacity key={item.id} style={styles.categoryItem}>
-                                <Image source={item.image} style={styles.categoryImage} />
-                                <Text style={styles.categoryText}>{item.name}</Text>
-                            </TouchableOpacity>
-                        ))}
+                {/* Sección de categorías */}
+                <View style={styles.section}>
+                    <View style={{ flexDirection: 'row' }}>
+                        <View style={styles.marker} />
+                        <Text style={styles.sectionTitle}>Categorías de Dulces</Text>
                     </View>
-                ))}
-    </View>
 
-    {/* Sección de productos */}
-    <Text style={styles.sectionTitle2}>Productos</Text>
-    <View style={styles.productRow}>
-        {products.map((product: Product) => (
-            <TouchableOpacity key={product.id} style={styles.productCard} onPress={() => handleProductPress(product)}>
-            <Image source={{ uri: product.image }} style={styles.productImage} />
-            <Text style={styles.productName}>{product.name}</Text>
-            <Text style={styles.productPrice}>{product.price}</Text>
-            </TouchableOpacity>
-        ))}
-        </View>
+                    {rows.map((row, index) => (
+                        <View key={index} style={styles.categoriesRow}>
+                            {row.map(item => (
+                                <TouchableOpacity key={item.id} style={styles.categoryItem} onPress={handleCheckout}>
+                                    <Image source={item.image} style={styles.categoryImage} />
+                                    <Text style={styles.categoryText}>{item.name}</Text>
+                                </TouchableOpacity>
+                            ))}
+                        </View>
+                    ))}
+                </View>
 
-    {/* Modal para mostrar detalles del producto */}
-    <Modal visible={!!selectedProduct} transparent={true} animationType="slide">
-        <View style={styles.modalContainer}>
-        <View style={styles.modalContent}>
-            {/* Botón de cierre con ícono */}
-            <TouchableOpacity style={styles.closeButton} onPress={closeModal}>
-            <Ionicons name="close" size={24} color="#000" />
-            </TouchableOpacity>
-            {selectedProduct && (
-            <>
-                <Text style={styles.productName}>{selectedProduct.name}</Text>
-                <Image source={{ uri: selectedProduct.image }} style={styles.modalProductImage} />
-                <Text style={styles.productDescription}>{selectedProduct.description}</Text>
-                <Text style={styles.productPrice}>{selectedProduct.price}</Text>
-                <TouchableOpacity style={styles.addButton}  onPress={handleAddToCart}>
-                    <Text style={styles.addButtonText}>Añadir al carrito</Text>
-                    <FontAwesome name="shopping-cart" size={30} color="#FFF" />
-                </TouchableOpacity>
-            </>
-            )}
+                {/* Sección de productos */}
+                <Text style={styles.sectionTitle2}>Productos</Text>
+                <View style={styles.productRow}>
+                    {products.map((product: Product) => (
+                        <TouchableOpacity key={product.id} style={styles.productCard} onPress={() => handleProductPress(product)}>
+                            <Image source={{ uri: product.image }} style={styles.productImage} />
+                            <Text style={styles.productName}>{product.name}</Text>
+                            <Text style={styles.productPrice}>{product.price}</Text>
+                        </TouchableOpacity>
+                    ))}
+                </View>
+
+                {/* Modal para mostrar detalles del producto */}
+                <Modal visible={!!selectedProduct} transparent={true} animationType="slide">
+                    <View style={styles.modalContainer}>
+                        <View style={styles.modalContent}>
+                            {/* Botón de cierre con ícono */}
+                            <TouchableOpacity style={styles.closeButton} onPress={closeModal}>
+                                <Ionicons name="close" size={24} color="#000" />
+                            </TouchableOpacity>
+                            {selectedProduct && (
+                                <>
+                                    <Text style={styles.productName}>{selectedProduct.name}</Text>
+                                    <Image source={{ uri: selectedProduct.image }} style={styles.modalProductImage} />
+                                    <Text style={styles.productDescription}>{selectedProduct.description}</Text>
+                                    <Text style={styles.productPrice}>{selectedProduct.price}</Text>
+                                    <TouchableOpacity style={styles.addButton} onPress={handleAddToCart}>
+                                        <Text style={styles.addButtonText}>Añadir al carrito</Text>
+                                        <FontAwesome name="shopping-cart" size={30} color="#FFF" />
+                                    </TouchableOpacity>
+                                </>
+                            )}
+                        </View>
+                    </View>
+                </Modal>
+            </ScrollView>
         </View>
-        </View>
-    </Modal>
-</ScrollView>
-</View>
-);
+    );
 };
 
 const styles = StyleSheet.create({
