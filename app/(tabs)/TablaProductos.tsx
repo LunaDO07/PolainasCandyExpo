@@ -152,6 +152,7 @@ return (
             <TextInput
             style={styles.modalInput}
             placeholder="Piezas"
+            keyboardType="numeric" 
             value={selectedItem?.piezas}
             onChangeText={(text) => setSelectedItem({ ...selectedItem, piezas: text })}
             />
@@ -159,6 +160,7 @@ return (
             style={styles.modalInput}
             placeholder="Precio"
             value={selectedItem?.precio}
+            keyboardType="numeric" 
             onChangeText={(text) => setSelectedItem({ ...selectedItem, precio: text })}
             />
             <TextInput

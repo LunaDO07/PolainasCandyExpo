@@ -167,7 +167,8 @@ return (
                 placeholder="Número"
                 value={selectedItem?.numero}
                 keyboardType="numeric"
-                onChangeText={(text) => setSelectedItem({ ...selectedItem, numero: text })}
+                maxLength={10}
+                onChangeText={(text) => setSelectedItem({ ...selectedItem, numero: text.slice(0, 10) })}
             />
             <TextInput
                 style={styles.modalInput}
@@ -192,7 +193,8 @@ return (
                 placeholder="Código Postal"
                 value={selectedItem?.codigoPostal}
                 keyboardType="numeric"
-                onChangeText={(text) => setSelectedItem({ ...selectedItem, codigoPostal: text })}
+                maxLength={4} // Restringe la longitud máxima del campo a 4 caracteres
+                onChangeText={(text) => setSelectedItem({ ...selectedItem, codigoPostal: text.slice(0, 4) })}
             />
             <View style={styles.modalButtons}>
                 <TouchableOpacity onPress={handleSave} style={[styles.modalButton, styles.saveButton]}>
@@ -250,7 +252,8 @@ return (
                 placeholder="Número"
                 value={newItem.numero}
                 keyboardType="numeric"
-                onChangeText={(text) => setNewItem({ ...newItem, numero: text })}
+                maxLength={10}
+                onChangeText={(text) => setSelectedItem({ ...selectedItem, numero: text ? parseFloat(text).toString() : '' })}
             />
             <TextInput
                 style={styles.modalInput}
@@ -275,6 +278,7 @@ return (
                 placeholder="Código Postal"
                 value={newItem.codigoPostal}
                 keyboardType="numeric"
+                maxLength={4}
                 onChangeText={(text) => setNewItem({ ...newItem, codigoPostal: text })}
             />
             <View style={styles.modalButtons}>
