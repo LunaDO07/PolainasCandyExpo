@@ -86,9 +86,9 @@ return (
     
 {/* Carrusel de imágenes */}
     <ScrollView horizontal pagingEnabled style={styles.carouselContainer}>
-        <Image source={require('../../assets/images/carrucel1.webp')} style={styles.carouselImage} resizeMode="cover" />
-        <Image source={require('../../assets/images/carrucel2.webp')} style={styles.carouselImage}  resizeMode="cover"/>
-        <Image source={require('../../assets/images/carrucel3.jpg')} style={styles.carouselImage}resizeMode="cover"/>
+        <Image source={require('../../assets/images/carrucel13.webp')} style={styles.carouselImage} resizeMode="cover" />
+        <Image source={require('../../assets/images/carrucel11.jpg')} style={styles.carouselImage}  resizeMode="cover"/>
+        <Image source={require('../../assets/images/carrucel1.webp')} style={styles.carouselImage}resizeMode="cover"/>
     </ScrollView>
 
 
@@ -103,10 +103,10 @@ return (
                 {rows.map((row, index) => (
                     <View key={index} style={styles.categoriesRow}>
                         {row.map(item => (
-                            <View key={item.id} style={styles.categoryItem}>
+                            <TouchableOpacity key={item.id} style={styles.categoryItem}>
                                 <Image source={item.image} style={styles.categoryImage} />
                                 <Text style={styles.categoryText}>{item.name}</Text>
-                            </View>
+                            </TouchableOpacity>
                         ))}
                     </View>
                 ))}

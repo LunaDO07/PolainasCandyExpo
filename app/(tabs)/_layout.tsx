@@ -8,7 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
-  const hiddenScreens = ["index","login","categorias",]; 
+  const hiddenScreens = ["login","categorias",]; 
   // Al terminar DESCOMENTAR ESTAS LINEA
 
   // const hiddenScreens = ["login,"index","registro","sucursales","indexCliente",

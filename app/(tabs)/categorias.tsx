@@ -53,38 +53,38 @@ return (
     <TouchableOpacity onPress={IrInicio} style={styles.navButton}>
                     <Ionicons name="arrow-back" size={24} color="#000" />
                 </TouchableOpacity>
-        <View style={styles.sidebarItem}>
+        <TouchableOpacity style={styles.sidebarItem}>
             <Image source={require('../../assets/images/gomitas.jpg')} style={styles.sidebarImage} />
             <Text style={styles.sidebarText}>Gomitas</Text>
-        </View>
-        <View style={styles.sidebarItem}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.sidebarItem}>
             <Image source={require('../../assets/images/chicles.jpg')} style={styles.sidebarImage} />
             <Text style={styles.sidebarText}>Chicles</Text>
-        </View>
-        <View style={styles.sidebarItem}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.sidebarItem}>
                 <Image  source={require('../../assets/images/chocolate.jpg')} style={styles.sidebarImage} />
                 <Text style={styles.sidebarText}>Chocolate</Text>
-        </View>
-        <View style={styles.sidebarItem}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.sidebarItem}>
             <Image  source={require('../../assets/images/paletas.jpg')} style={styles.sidebarImage} />
             <Text style={styles.sidebarText}>Paletas</Text>
-        </View>
-        <View style={styles.sidebarItem}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.sidebarItem}>
             <Image  source={require('../../assets/images/gall2.jpg')} style={styles.sidebarImage} />
             <Text style={styles.sidebarText}>Galletas</Text>
-        </View>
-        <View style={styles.sidebarItem}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.sidebarItem}>
             <Image  source={require('../../assets/images/botanas.webp')} style={styles.sidebarImage} />
             <Text style={styles.sidebarText}>Botana</Text>
-        </View>
-        <View style={styles.sidebarItem}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.sidebarItem}>
             <Image  source={require('../../assets/images/bombones.jpg')} style={styles.sidebarImage} />
             <Text style={styles.sidebarText}>Bombones</Text>
-        </View>
-        <View style={styles.sidebarItem}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.sidebarItem}>
             <Image  source={require('../../assets/images/tamarindo.jpg')} style={styles.sidebarImage} />
             <Text style={styles.sidebarText}>Tamarindo</Text>
-        </View>
+        </TouchableOpacity>
     </ScrollView>
 
     {/* Cards de productos  AQUI SI MODIFICAR*/}

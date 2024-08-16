@@ -77,7 +77,7 @@ const renderItem = ({ item }: { item: typeof data[0] }) => (
 return (
     <View style={styles.container}>
     {/* Navbar superior */}
-   <NavAdmn/>
+    <NavAdmn/>
 
     {/* Encabezado de la tabla como Navbar */}
     <View style={styles.tableHeaderNavbar}>
