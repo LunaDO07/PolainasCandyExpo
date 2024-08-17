@@ -114,7 +114,7 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name="tablaSucursales"
+        name="TablaSucursales"
         options={{
           title: 'Tabla Sucursales',
           tabBarIcon: ({ color, focused }) => (
@@ -124,7 +124,7 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name="logs"
+        name="Logs"
         options={{
           title: 'Logs',
           tabBarIcon: ({ color, focused }) => (
@@ -134,7 +134,7 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name="tablaProductos"
+        name="TablaProductos"
         options={{
           title: 'Productos',
           tabBarIcon: ({ color, focused }) => (

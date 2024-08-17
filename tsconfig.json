@@ -2,6 +2,7 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
+    "jsx": "react-native",  // Opción añadida para manejar JSX en React Native
     "paths": {
       "@/*": [
         "./*"
@@ -12,6 +13,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".expo/types/**/*.ts",
-    "expo-env.d.ts"
-, "components/Alert.js", "components/navBusqueda.tsx"  ]
+    "expo-env.d.ts",
+    "components/Alert.js",
+    "components/navBusqueda.tsx"
+  ]
 }

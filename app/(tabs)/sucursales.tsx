@@ -10,11 +10,11 @@ const PolainasCandys = () => {
 const router = useRouter();
 
 const irSucursal = () => {
-    router.push('/tablaSucursales'); 
+    router.push('/TablaSucursales'); 
 }
 
 const irProductos = () => {
-    router.push('/tablaProductos'); 
+    router.push('/TablaProductos'); 
 }
 
 return (
