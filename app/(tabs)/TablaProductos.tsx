@@ -33,6 +33,10 @@ const [newProduct, setNewProduct] = useState<any>({
     image: null
 });
 const [data, setData] = useState(initialData);
+//para manejar el modal de error
+const [errorModalVisible, setErrorModalVisible] = useState(false);
+const [errorMessage, setErrorMessage] = useState('');
+
 
 const handleDelete = (id: string) => {
     setData(data.filter(item => item.id !== id));
@@ -44,13 +48,41 @@ const handleEdit = (item: typeof initialData[0]) => {
 };
 
 const handleSave = () => {
-    if (selectedItem) {
-    setData(data.map(item => item.id === selectedItem.id ? selectedItem : item));
+    if (
+        !selectedItem?.nombre ||
+        !selectedItem?.descripcion ||
+        !selectedItem?.peso ||
+        !selectedItem?.piezas ||
+        !selectedItem?.precio ||
+        !selectedItem?.sucursal ||
+        !selectedItem?.existencias ||
+        !selectedItem?.categoria ||
+        !selectedItem?.marca
+    ) {
+        setErrorMessage('Existen campos vacíos. Por favor, completa toda la información.');
+        setErrorModalVisible(true);
+        return;
     }
+    setData(data.map(item => item.id === selectedItem.id ? selectedItem : item));
     setModalVisible(false);
 };
 
 const handleAddProduct = () => {
+    if (
+        !newProduct.nombre ||
+        !newProduct.descripcion ||
+        !newProduct.peso ||
+        !newProduct.piezas ||
+        !newProduct.precio ||
+        !newProduct.sucursal ||
+        !newProduct.existencias ||
+        !newProduct.categoria ||
+        !newProduct.marca
+    ) {
+        setErrorMessage('Existen campos vacios. Por favor, completa toda la informacion.');
+        setErrorModalVisible(true);
+        return;
+    }
     setData([...data, { ...newProduct, id: (data.length + 1).toString() }]);
     setNewProduct({ nombre: '', descripcion: '', peso: '', piezas: '', precio: '', sucursal: '', existencias: '', categoria: '', marca: '', image: null });
     setAddProductModalVisible(false);
@@ -322,6 +354,24 @@ return (
         </View>
         </View>
     </Modal>
+{/* Modal para la validacion de campos vacios */}
+<Modal
+    visible={errorModalVisible}
+    transparent={true}
+    animationType="fade"
+    onRequestClose={() => setErrorModalVisible(false)}
+>
+<View style={styles.modalOverlay}>
+        <View style={styles.errorModalContent}>
+        <Ionicons name="alert-circle-outline" size={40} color="#000000" />
+            <Text style={styles.errorModalTitle}>Error</Text>
+            <Text style={styles.errorModalMessage}>{errorMessage}</Text>
+            <TouchableOpacity onPress={() => setErrorModalVisible(false)} style={styles.errorModalButton}>
+                <Text style={styles.buttonText}>Cerrar</Text>
+            </TouchableOpacity>
+        </View>
+    </View>
+</Modal>
 
     </View>
 );
@@ -508,6 +558,33 @@ image: {
     height: 50,
     borderRadius: 5,
     marginHorizontal:12,
+},
+errorModalContent: {
+    backgroundColor: '#FFF',
+    padding: 20,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 5,
+},
+errorModalTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+},
+errorModalMessage: {
+    fontSize: 16,
+    marginBottom: 20,
+    textAlign: 'center',
+},
+errorModalButton: {
+    backgroundColor: '#242424', 
+    padding: 10,
+    borderRadius: 5,
 },
 });
 

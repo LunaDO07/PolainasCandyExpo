@@ -443,6 +443,7 @@ const styles = StyleSheet.create({
         padding: 5,
         marginLeft: 10, // Espacio entre el input y el ícono
     },
+    
 });
 
 export default Registro;
