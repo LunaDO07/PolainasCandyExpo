@@ -17,6 +17,7 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     const [modalVisible, setModalVisible] = useState(false);
+    const [quantity, setQuantity] = useState(1);
 
     const handleOpenModal = () => {
         setModalVisible(true);
@@ -28,7 +29,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
     const handleAddToCart = () => {
         closeModal();
-        Alert.alert('Producto añadido', 'El Producto se añadió al carrito de compras');
+        Alert.alert('Producto añadido', `El producto se añadió al carrito de compras con cantidad: ${quantity}`);
+    };
+
+    const incrementQuantity = () => {
+        setQuantity(prevQuantity => prevQuantity + 1);
+    };
+
+    const decrementQuantity = () => {
+        setQuantity(prevQuantity => (prevQuantity > 1 ? prevQuantity - 1 : 1));
     };
 
     return (
@@ -48,7 +57,20 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                         <Text style={styles.productName}>{product.name}</Text>
                         <Image source={{ uri: product.image }} style={styles.modalProductImage} />
                         <Text style={styles.productDescription}>{product.description}</Text>
-                        <Text style={styles.productPrice}>{product.price}</Text>
+                        
+                        <View style={styles.priceQuantityContainer}>
+                            <Text style={styles.productPrice}>{product.price}</Text>
+                            <View style={styles.quantityContainer}>
+                                <TouchableOpacity onPress={decrementQuantity} style={styles.quantityButton}>
+                                    <Ionicons name="remove" size={20} color="#000" />
+                                </TouchableOpacity>
+                                <Text style={styles.quantityText}>{quantity}</Text>
+                                <TouchableOpacity onPress={incrementQuantity} style={styles.quantityButton}>
+                                    <Ionicons name="add" size={20} color="#000" />
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+
                         <TouchableOpacity style={styles.addButton} onPress={handleAddToCart}>
                             <Text style={styles.addButtonText}>Añadir al carrito</Text>
                             <FontAwesome name="shopping-cart" size={30} color="#FFF" />
@@ -119,9 +141,31 @@ const styles = StyleSheet.create({
         fontFamily: 'Josefinreg',
         textAlign: 'center',
     },
+    priceQuantityContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 10,
+    },
+    quantityContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginLeft: 35,
+        paddingHorizontal: 5,
+        borderWidth: 1,
+        borderColor: '#ddd',
+        borderRadius: 5,
+    },
+    quantityButton: {
+        padding: 5,
+    },
+    quantityText: {
+        fontSize: 16,
+        fontFamily: 'Josefinreg',
+        marginHorizontal: 10,
+    },
     addButton: {
         flexDirection: 'row',
-        marginTop: 10,
+        marginTop: 20,
         paddingVertical: 10,
         borderRadius: 5,
         backgroundColor: '#4eacba',
