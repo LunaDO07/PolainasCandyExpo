@@ -139,6 +139,17 @@ const IndexCliente: React.FC = () => {
                                     <Image source={{ uri: selectedProduct.image }} style={styles.modalProductImage} />
                                     <Text style={styles.productDescription}>{selectedProduct.description}</Text>
                                     <Text style={styles.productPrice}>{selectedProduct.price}</Text>
+                                    
+                                {/* <View style={styles.quantityContainer}>
+                                    <TouchableOpacity onPress={onRemove} style={styles.quantityButton}>
+                                        <Text style={styles.quantityButtonText}>-</Text>
+                                    </TouchableOpacity>
+                                    <Text style={styles.quantityText}>{item.quantity}</Text>
+                                    <TouchableOpacity onPress={onAdd} style={styles.quantityButton}>
+                                        <Text style={styles.quantityButtonText}>+</Text>
+                                    </TouchableOpacity>
+                                
+                                </View> */}
                                     <TouchableOpacity style={styles.addButton} onPress={handleAddToCart}>
                                         <Text style={styles.addButtonText}>Añadir al carrito</Text>
                                         <FontAwesome name="shopping-cart" size={30} color="#FFF" />
@@ -324,6 +335,25 @@ addButtonText: {
     color: '#fff',
     fontFamily:'Josefinreg',
     marginRight:20,
+},
+
+quantityContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+},
+quantityButton: {
+    backgroundColor: '#ffffff',
+    borderRadius: 5,
+    padding: 13,
+    marginHorizontal: 5,
+},
+quantityButtonText: {
+    fontSize: 20,
+    color: '#333',
+},
+quantityText: {
+    fontSize: 16,
+    color: '#1c5962',
 },
 });
 

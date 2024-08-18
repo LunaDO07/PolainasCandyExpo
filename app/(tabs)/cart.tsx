@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Image, Modal } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
@@ -9,73 +9,33 @@ interface CartItemType {
     name: string;
     price: number;
     image: string;
-    quantity: number;
 }
 
 const CartItem: React.FC<{
     item: CartItemType;
-    onAdd: () => void;
-    onRemove: () => void;
     onDelete: () => void;
-}> = ({ item, onAdd, onRemove, onDelete }) => (
+}> = ({ item, onDelete }) => (
     <View style={styles.cartItem}>
         <Image source={{ uri: item.image }} style={styles.productImage} />
         <View style={styles.itemDetails}>
             <Text style={styles.productName}>{item.name}</Text>
             <Text style={styles.productPrice}>${item.price.toFixed(2)}</Text>
         </View>
-        <View style={styles.actionsContainer}>
-            <View style={styles.quantityContainer}>
-                <TouchableOpacity onPress={onRemove} style={styles.quantityButton}>
-                    <Text style={styles.quantityButtonText}>-</Text>
-                </TouchableOpacity>
-                <Text style={styles.quantityText}>{item.quantity}</Text>
-                <TouchableOpacity onPress={onAdd} style={styles.quantityButton}>
-                    <Text style={styles.quantityButtonText}>+</Text>
-                </TouchableOpacity>
-            </View>
-            <TouchableOpacity onPress={onDelete} style={styles.deleteButton}>
-                <Ionicons name="trash-outline" size={24} color="#666" />
-            </TouchableOpacity>
-        </View>
+        <TouchableOpacity onPress={onDelete} style={styles.deleteButton}>
+            <Ionicons name="trash-outline" size={24} color="#666" />
+        </TouchableOpacity>
     </View>
 );
 
 const Cart: React.FC = () => {
     const [cartItems, setCartItems] = useState<CartItemType[]>([
-        { id: 1, name: 'Picafresas', price: 10.00, image: 'https://loveveg.mx/app/uploads/2021/11/Mesa-de-trabajo-58-711x1024.jpg', quantity: 1 },
-        { id: 2, name: 'Aciduladito', price: 20.00, image: 'https://http2.mlstatic.com/D_NQ_NP_787132-MLU73865457966_012024-O.webp', quantity: 2 },
-    
+        { id: 1, name: 'Picafresas', price: 10.00, image: 'https://loveveg.mx/app/uploads/2021/11/Mesa-de-trabajo-58-711x1024.jpg' },
+        { id: 2, name: 'Aciduladito', price: 20.00, image: 'https://http2.mlstatic.com/D_NQ_NP_787132-MLU73865457966_012024-O.webp' },
     ]);
 
     const [showConfirmationModal, setShowConfirmationModal] = useState<boolean>(false);
     const [itemToDelete, setItemToDelete] = useState<CartItemType | null>(null);
     const router = useRouter();
-
-    useEffect(() => {
-        if (itemToDelete && itemToDelete.quantity === 0) {
-            setShowConfirmationModal(true);
-        }
-    }, [itemToDelete]);
-
-    const handleAdd = (id: number) => {
-        setCartItems(cartItems.map(item =>
-            item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-        ));
-    };
-
-    const handleRemove = (id: number) => {
-        setCartItems(prevItems => {
-            const updatedItems = prevItems.map(item =>
-                item.id === id ? { ...item, quantity: Math.max(item.quantity - 1, 0) } : item
-            );
-            const item = updatedItems.find(item => item.id === id);
-            if (item && item.quantity === 0) {
-                setItemToDelete(item);
-            }
-            return updatedItems;
-        });
-    };
 
     const handleDelete = () => {
         if (itemToDelete) {
@@ -90,11 +50,10 @@ const Cart: React.FC = () => {
         setItemToDelete(null);
     };
 
-    const totalAmount = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const totalAmount = cartItems.reduce((sum, item) => sum + item.price, 0);
 
-    // linea de redireccion
     const handleCheckout = () => {
-        router.push('/datosUser'); // Cambia el path según tu ruta deseada
+        router.push('/datosUser');
     };
 
     return (
@@ -105,9 +64,10 @@ const Cart: React.FC = () => {
                     <CartItem
                         key={item.id}
                         item={item}
-                        onAdd={() => handleAdd(item.id)}
-                        onRemove={() => handleRemove(item.id)}
-                        onDelete={() => handleRemove(item.id)}
+                        onDelete={() => {
+                            setItemToDelete(item);
+                            setShowConfirmationModal(true);
+                        }}
                     />
                 ))}
             </ScrollView>
@@ -119,7 +79,6 @@ const Cart: React.FC = () => {
                 </TouchableOpacity>
             </View>
 
-            {/* Modal de confirmación de eliminación */}
             <Modal
                 visible={showConfirmationModal}
                 transparent={true}
@@ -131,7 +90,7 @@ const Cart: React.FC = () => {
                         <Text style={styles.modalText}>¿Estás seguro que quieres eliminar este producto?</Text>
                         <View style={styles.modalButtons}>
                             <TouchableOpacity onPress={handleDelete} style={styles.modalButton}>
-                                <Text style={styles.modalButtonText}>Sí, eliminar</Text>
+                                <Text style={styles.modalButtonText}>Eliminar</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={handleCancelDelete} style={styles.modalButton}>
                                 <Text style={styles.modalButtonText}>Cancelar</Text>
@@ -144,20 +103,19 @@ const Cart: React.FC = () => {
     );
 };
 
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexGrow: 1,
         backgroundColor: 'rgba(247, 235, 207, 0.68)',
     },
     cartContainer: {
-        marginTop:10,
+        flexGrow: 1,
+        justifyContent: 'flex-start',
     },
     cartItem: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop:5,
+        marginTop: 5,
         paddingVertical: 10,
         paddingHorizontal: 10,
         borderBottomWidth: 1,
@@ -180,35 +138,17 @@ const styles = StyleSheet.create({
     productName: {
         fontSize: 17,
         color: '#333',
-        fontFamily:'Josefinmedium',
+        fontFamily: 'Josefinmedium',
     },
     productPrice: {
         fontSize: 14,
         color: '#666',
-        fontFamily:'Josefinmedium',
+        fontFamily: 'Josefinmedium',
     },
     actionsContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         marginLeft: 'auto',
-    },
-    quantityContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    quantityButton: {
-        backgroundColor: '#ffffff',
-        borderRadius: 5,
-        padding: 13,
-        marginHorizontal: 5,
-    },
-    quantityButtonText: {
-        fontSize: 20,
-        color: '#333',
-    },
-    quantityText: {
-        fontSize: 16,
-        color: '#1c5962',
     },
     deleteButton: {
         marginRight: 10,
@@ -240,9 +180,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#000000',
         fontFamily: 'Laila',
-        paddingHorizontal:30,
-    },
-    modalContainer: {
+    }, modalContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
@@ -258,6 +196,7 @@ const styles = StyleSheet.create({
     modalText: {
         fontSize: 18,
         marginBottom: 20,
+        fontFamily:'Laila',
     },
     modalButtons: {
         flexDirection: 'row',
@@ -265,7 +204,7 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     modalButton: {
-        backgroundColor: '#007bff',
+        backgroundColor: '#252525',
         borderRadius: 5,
         paddingVertical: 10,
         paddingHorizontal: 20,
@@ -275,6 +214,7 @@ const styles = StyleSheet.create({
     modalButtonText: {
         color: '#fff',
         fontSize: 16,
+        fontFamily:'Laila',
     },
 });
 
