@@ -29,6 +29,11 @@ const TablaSucursales: React.FC = () => {
         codigoPostal: '',
     });
 
+    const validateFields = (item: any) => {
+        return item.calle !== '' && item.numero !== '' && item.colonia !== '' &&
+               item.localidad !== '' && item.municipio !== '' && item.codigoPostal !== '';
+    };
+
     const handleDelete = (id: string) => {
         setData(data.filter(item => item.id !== id));
     };
@@ -38,11 +43,15 @@ const TablaSucursales: React.FC = () => {
         setModalVisible(true);
     };
 
-    const handleSave = () => {
+   const handleSave = () => {
+    if (validateFields(selectedItem)) {
         const updatedData = data.map(item => item.id === selectedItem.id ? selectedItem : item);
         setData(updatedData);
         setModalVisible(false);
-    };
+    } else {
+        alert('Por favor, complete todos los campos.');
+    }
+};
 
     const handleAddProduct = () => {
         const newId = (data.length + 1).toString();

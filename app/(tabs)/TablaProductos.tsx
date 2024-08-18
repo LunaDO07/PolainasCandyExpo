@@ -17,6 +17,7 @@ const initialData = [
 ];
 
 const TablaProductos: React.FC = () => {
+const [selectedValue, setSelectedValue] = useState<string>('');
 const [modalVisible, setModalVisible] = useState(false);
 const [addProductModalVisible, setAddProductModalVisible] = useState(false);
 const [selectedItem, setSelectedItem] = useState<any>(null);
@@ -47,17 +48,20 @@ const handleEdit = (item: typeof initialData[0]) => {
     setModalVisible(true);
 };
 
+//validar campos
 const handleSave = () => {
+    console.log("Selected Item:", selectedItem); // Agrega este log
     if (
-        !selectedItem?.nombre ||
-        !selectedItem?.descripcion ||
-        !selectedItem?.peso ||
-        !selectedItem?.piezas ||
-        !selectedItem?.precio ||
-        !selectedItem?.sucursal ||
-        !selectedItem?.existencias ||
-        !selectedItem?.categoria ||
-        !selectedItem?.marca
+        !selectedItem?.nombre?.trim() ||
+        !selectedItem?.descripcion?.trim() ||
+        !selectedItem?.peso?.trim() ||
+        !selectedItem?.piezas?.trim() ||
+        !selectedItem?.precio?.trim() ||
+        !selectedItem?.sucursal?.trim() ||
+        !selectedItem?.existencias?.trim() ||
+        !selectedItem?.categoria?.trim() ||
+        !selectedItem?.marca?.trim() ||
+        !selectedValue ?.trim() // Verifica que selectedGender tenga un valor
     ) {
         setErrorMessage('Existen campos vacíos. Por favor, completa toda la información.');
         setErrorModalVisible(true);
@@ -68,18 +72,20 @@ const handleSave = () => {
 };
 
 const handleAddProduct = () => {
+    console.log("New Product:", newProduct); // Agrega este log
     if (
-        !newProduct.nombre ||
-        !newProduct.descripcion ||
-        !newProduct.peso ||
-        !newProduct.piezas ||
-        !newProduct.precio ||
-        !newProduct.sucursal ||
-        !newProduct.existencias ||
-        !newProduct.categoria ||
-        !newProduct.marca
+        !newProduct.nombre?.trim() ||
+        !newProduct.descripcion?.trim() ||
+        !newProduct.peso?.trim() ||
+        !newProduct.piezas?.trim() ||
+        !newProduct.precio?.trim() ||
+        !newProduct.sucursal?.trim() ||
+        !newProduct.existencias?.trim() ||
+        !newProduct.categoria?.trim() ||
+        !newProduct.marca?.trim() ||
+        !selectedValue ?.trim() // Verifica que selectedGender tenga un valor
     ) {
-        setErrorMessage('Existen campos vacios. Por favor, completa toda la informacion.');
+        setErrorMessage('Existen campos vacíos. Por favor, completa toda la información.');
         setErrorModalVisible(true);
         return;
     }
@@ -225,8 +231,11 @@ return (
             />
             <View  style={styles.modalInput} >
             <Picker
-            //  selectedValue={selectedGender}
-                // onValueChange={(itemValue) => setSelectedGender(itemValue)}
+                selectedValue={selectedValue}
+                onValueChange={(itemValue) => {
+                    setSelectedValue(itemValue);
+                    setNewProduct({ ...newProduct, categoria: itemValue }); // Asigna el valor de la categoría al nuevo producto
+                }}
                 dropdownIconColor="#A6A6A6">
                 <Picker.Item label="Categoria" value="" color="#A6A6A6" />
                 <Picker.Item label="Gomitas" value="Gomitas" />
@@ -318,11 +327,15 @@ return (
             onChangeText={(text) => setNewProduct({ ...newProduct, existencias: text })}
             />
             <View  style={styles.modalInput} >
+                
             <Picker
-            //  selectedValue={selectedGender}
-                // onValueChange={(itemValue) => setSelectedGender(itemValue)}
+                selectedValue={selectedValue}
+                onValueChange={(itemValue) => {
+                    setSelectedValue(itemValue);
+                    setSelectedItem({ ...selectedItem, categoria: itemValue }); // Asigna el valor de la categoría al producto seleccionado
+                }}
                 dropdownIconColor="#A6A6A6">
-                <Picker.Item label="Categoria" value="" color="#A6A6A6" />
+                <Picker.Item label="Categoría" value="" color="#A6A6A6" />
                 <Picker.Item label="Gomitas" value="Gomitas" />
                 <Picker.Item label="Chicles" value="Chicles" />
                 <Picker.Item label="Chocolates" value="Chocolates" />
@@ -364,7 +377,6 @@ return (
 <View style={styles.modalOverlay}>
         <View style={styles.errorModalContent}>
         <Ionicons name="alert-circle-outline" size={40} color="#000000" />
-            <Text style={styles.errorModalTitle}>Error</Text>
             <Text style={styles.errorModalMessage}>{errorMessage}</Text>
             <TouchableOpacity onPress={() => setErrorModalVisible(false)} style={styles.errorModalButton}>
                 <Text style={styles.buttonText}>Cerrar</Text>
