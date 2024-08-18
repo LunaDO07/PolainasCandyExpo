@@ -4,12 +4,15 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { FontAwesome } from '@expo/vector-icons';
 import { NavAdmn } from '../../components/NavAdmn';
 import * as ImagePicker from 'expo-image-picker';
+import { Picker } from '@react-native-picker/picker';
 
 const { width } = Dimensions.get('window'); // Ancho de la pantalla
 
 // Datos de ejemplo
 const initialData = [
 { id: '1', nombre: 'Producto A', descripcion: 'Descripción A', peso: '500g', piezas: '10', precio: '$100', sucursal: 'Sucursal 1', existencias: '20', categoria: 'Categoría A', marca: 'Marca A', image: null },
+
+{ id: '2', nombre: 'Producto A', descripcion: 'Descripción A', peso: '500g', piezas: '10', precio: '$100', sucursal: 'Sucursal 1', existencias: '20', categoria: 'Categoría A', marca: 'Marca A', image: null },
 // Otros productos...
 ];
 
@@ -81,7 +84,7 @@ const pickImage = async (setter: React.Dispatch<React.SetStateAction<string | nu
 
 const renderItem = ({ item }: { item: typeof initialData[0] }) => (
     <View style={styles.row}>
-    <Text style={styles.cell}>{item.id}</Text>
+    {item.image && <Image source={{ uri: item.image }} style={styles.image} />}
     <Text style={styles.cell}>{item.nombre}</Text>
     <Text style={styles.cell}>{item.descripcion}</Text>
     <Text style={styles.cell}>{item.peso}</Text>
@@ -90,8 +93,7 @@ const renderItem = ({ item }: { item: typeof initialData[0] }) => (
     <Text style={styles.cell}>{item.sucursal}</Text>
     <Text style={styles.cell}>{item.existencias}</Text>
     <Text style={styles.cell}>{item.categoria}</Text>
-    <Text style={styles.cell}>{item.marca}</Text>
-    {item.image && <Image source={{ uri: item.image }} style={styles.image} />}
+    <Text style={styles.cell}>{item.marca}</Text>   
     <View style={styles.actions}>
         <TouchableOpacity onPress={() => handleEdit(item)} style={styles.actionButton}>
         <FontAwesome name="edit" size={24} color="#91918F" />
@@ -108,7 +110,7 @@ return (
     {/* Navbar superior */}
     <NavAdmn />
 
-    {/* Encabezado de la tabla como Navbar */}
+    {/* Encabezado TITULO */}
     <View style={styles.tableHeaderNavbar}>
         <Text style={styles.tableHeaderNavbarTitle}>Lista de Productos</Text>
     </View>
@@ -122,24 +124,8 @@ return (
     </View>
 
     {/* Tabla de Productos */}
-    <View style={styles.tableWrapper}>
         <ScrollView horizontal showsHorizontalScrollIndicator={true}>
         <View style={styles.table}>
-            {/* Encabezado de la tabla */}
-            <View style={styles.tableHeader}>
-            <Text style={[styles.tableHeaderText, styles.tableColumnID]}>IDProducto</Text>
-            <Text style={[styles.tableHeaderText, styles.tableColumnNombre]}>Nombre</Text>
-            <Text style={[styles.tableHeaderText, styles.tableColumnDescripcion]}>Descripción</Text>
-            <Text style={[styles.tableHeaderText, styles.tableColumnPeso]}>Peso/Contenido</Text>
-            <Text style={[styles.tableHeaderText, styles.tableColumnPiezas]}>Piezas</Text>
-            <Text style={[styles.tableHeaderText, styles.tableColumnPrecio]}>Precio</Text>
-            <Text style={[styles.tableHeaderText, styles.tableColumnSucursal]}>Sucursal</Text>
-            <Text style={[styles.tableHeaderText, styles.tableColumnExistencias]}>Existencias</Text>
-            <Text style={[styles.tableHeaderText, styles.tableColumnCategoria]}>Categoría</Text>
-            <Text style={[styles.tableHeaderText, styles.tableColumnMarca]}>Marca</Text>
-            <Text style={[styles.tableHeaderText, styles.tableColumnImagen]}>Imagen</Text>
-            <Text style={[styles.tableHeaderText, styles.tableColumnAcciones]}>Acciones</Text>
-            </View>
             {/* Lista de registros */}
             <FlatList
             data={data}
@@ -149,7 +135,6 @@ return (
             />
         </View>
         </ScrollView>
-    </View>
 
     {/* Modal para editar producto */}
     <Modal
@@ -206,12 +191,23 @@ return (
             value={selectedItem?.existencias}
             onChangeText={(text) => setSelectedItem({ ...selectedItem, existencias: text })}
             />
-            <TextInput
-            style={styles.modalInput}
-            placeholder="Categoría"
-            value={selectedItem?.categoria}
-            onChangeText={(text) => setSelectedItem({ ...selectedItem, categoria: text })}
-            />
+            <View  style={styles.modalInput} >
+            <Picker
+            //  selectedValue={selectedGender}
+                // onValueChange={(itemValue) => setSelectedGender(itemValue)}
+                dropdownIconColor="#A6A6A6">
+                <Picker.Item label="Categoria" value="" color="#A6A6A6" />
+                <Picker.Item label="Gomitas" value="Gomitas" />
+                <Picker.Item label="Chicles" value="Chicles" />
+                <Picker.Item label="Chocolates" value="Chocolates" />
+                <Picker.Item label="Paletas" value="Paletas" />
+                <Picker.Item label="Galletas" value="Galletas" />
+                <Picker.Item label="Botana" value="Botana" />
+                <Picker.Item label="Bombones" value="Bombones" />
+                <Picker.Item label="Tamarindos" value="Tamarindos" />
+            </Picker>
+            </View>
+
             <TextInput
             style={styles.modalInput}
             placeholder="Marca"
@@ -289,12 +285,22 @@ return (
             value={newProduct.existencias}
             onChangeText={(text) => setNewProduct({ ...newProduct, existencias: text })}
             />
-            <TextInput
-            style={styles.modalInput}
-            placeholder="Categoría"
-            value={newProduct.categoria}
-            onChangeText={(text) => setNewProduct({ ...newProduct, categoria: text })}
-            />
+            <View  style={styles.modalInput} >
+            <Picker
+            //  selectedValue={selectedGender}
+                // onValueChange={(itemValue) => setSelectedGender(itemValue)}
+                dropdownIconColor="#A6A6A6">
+                <Picker.Item label="Categoria" value="" color="#A6A6A6" />
+                <Picker.Item label="Gomitas" value="Gomitas" />
+                <Picker.Item label="Chicles" value="Chicles" />
+                <Picker.Item label="Chocolates" value="Chocolates" />
+                <Picker.Item label="Paletas" value="Paletas" />
+                <Picker.Item label="Galletas" value="Galletas" />
+                <Picker.Item label="Botana" value="Botana" />
+                <Picker.Item label="Bombones" value="Bombones" />
+                <Picker.Item label="Tamarindos" value="Tamarindos" />
+            </Picker>
+            </View>
             <TextInput
             style={styles.modalInput}
             placeholder="Marca"
@@ -355,42 +361,14 @@ addButtonText: {
     fontFamily:'Josefbold',
     fontSize:15,
 },
-tableWrapper: {
+table: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: 10,
     paddingHorizontal: 20,
-},
-table: {
-    backgroundColor: '#FFF',
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#DDDDDD',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
-    minWidth: width * 1.8,
-},
-tableHeader: {
-    flexDirection: 'row',
-    backgroundColor: '#b9b9b9',
-    paddingVertical: 10,
-    paddingHorizontal: 5,
-    borderTopLeftRadius: 8,
-    borderTopRightRadius: 8,
-    borderBottomWidth: 1,
-    borderBottomColor: '#DDDDDD',
-},
-tableHeaderText: {
-    fontSize: 12,
-    color: '#333',
-    textAlign: 'center',
-    flex: 1,
-    minWidth: 100, 
-    fontFamily:'Lailabold',
+    backgroundColor: '#F4F4F4',
+
 },
 tableColumnID: {
     flex: 2,
@@ -429,14 +407,17 @@ tableColumnAcciones: {
 row: {
     flexDirection: 'row',
     paddingVertical: 8,
-    borderBottomWidth: 1,
-    borderBottomColor: '#E5E5E5',
-    backgroundColor: '#FFF',
+    borderWidth: 1,
+    borderColor:'rgb(169, 169, 169)',
+    backgroundColor: '#ffffff',
+    marginTop:15,
+    borderRadius:10,
 },
 cell: {
     flex: 1,
     textAlign: 'center',
     paddingHorizontal: 5,
+    paddingVertical:10,
     fontSize: 11,
     color: '#333',
     minWidth: 80,
@@ -475,7 +456,7 @@ modalTitle: {
     fontFamily:'Lailabold'
 },
 modalInput: {
-    height: 40,
+    height: 50,
     borderColor: '#DDD',
     borderWidth: 1,
     borderRadius: 4,
@@ -526,6 +507,7 @@ image: {
     width: 50,
     height: 50,
     borderRadius: 5,
+    marginHorizontal:12,
 },
 });
 
