@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, ScrollView, Modal, Alert, Dimensions, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import NavBusqueda from '../../components/navBusqueda';
 import { ImageSourcePropType } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import ProductCard from '../../components/ProductCard'; //CARD DE PRODUCTOS
+
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -52,7 +52,6 @@ const IndexCliente: React.FC = () => {
     };
 
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-    const [modalVisible, setModalVisible] = useState(false);
 
     const products: Product[] = [
         { id: 1, name: 'Producto 1', price: '$10.00', image: 'https://via.placeholder.com/150', description: 'Descripción del Producto 1' },
@@ -66,21 +65,7 @@ const IndexCliente: React.FC = () => {
         setSelectedProduct(product);
     };
 
-    const handleOpenModal = (product: Product) => {
-        setSelectedProduct(product);
-        setModalVisible(true);
-    };
 
-    const closeModal = () => {
-        setSelectedProduct(null);
-    };
-
-    const handleAddToCart = () => {
-        // Cierra el modal
-        closeModal();
-        // Muestra un mensaje de éxito
-        Alert.alert('Producto añadido', ' El Producto se añadió al carrito de compras');
-    };
 
     return (
         <View style={styles.container}>
@@ -116,49 +101,10 @@ const IndexCliente: React.FC = () => {
                 {/* Sección de productos */}
                 <Text style={styles.sectionTitle2}>Productos</Text>
                 <View style={styles.productRow}>
-                    {products.map((product: Product) => (
-                        <TouchableOpacity key={product.id} style={styles.productCard} onPress={() => handleProductPress(product)}>
-                            <Image source={{ uri: product.image }} style={styles.productImage} />
-                            <Text style={styles.productName}>{product.name}</Text>
-                            <Text style={styles.productPrice}>{product.price}</Text>
-                        </TouchableOpacity>
+                    {products.map((product) => (
+                        <ProductCard key={product.id} product={product} />
                     ))}
                 </View>
-
-                {/* Modal para mostrar detalles del producto */}
-                <Modal visible={!!selectedProduct} transparent={true} animationType="slide">
-                    <View style={styles.modalContainer}>
-                        <View style={styles.modalContent}>
-                            {/* Botón de cierre con ícono */}
-                            <TouchableOpacity style={styles.closeButton} onPress={closeModal}>
-                                <Ionicons name="close" size={24} color="#000" />
-                            </TouchableOpacity>
-                            {selectedProduct && (
-                                <>
-                                    <Text style={styles.productName}>{selectedProduct.name}</Text>
-                                    <Image source={{ uri: selectedProduct.image }} style={styles.modalProductImage} />
-                                    <Text style={styles.productDescription}>{selectedProduct.description}</Text>
-                                    <Text style={styles.productPrice}>{selectedProduct.price}</Text>
-                                    
-                                {/* <View style={styles.quantityContainer}>
-                                    <TouchableOpacity onPress={onRemove} style={styles.quantityButton}>
-                                        <Text style={styles.quantityButtonText}>-</Text>
-                                    </TouchableOpacity>
-                                    <Text style={styles.quantityText}>{item.quantity}</Text>
-                                    <TouchableOpacity onPress={onAdd} style={styles.quantityButton}>
-                                        <Text style={styles.quantityButtonText}>+</Text>
-                                    </TouchableOpacity>
-                                
-                                </View> */}
-                                    <TouchableOpacity style={styles.addButton} onPress={handleAddToCart}>
-                                        <Text style={styles.addButtonText}>Añadir al carrito</Text>
-                                        <FontAwesome name="shopping-cart" size={30} color="#FFF" />
-                                    </TouchableOpacity>
-                                </>
-                            )}
-                        </View>
-                    </View>
-                </Modal>
             </ScrollView>
         </View>
     );
@@ -287,73 +233,6 @@ productPrice: {
     fontSize: 17,
     color: '#106680',
     fontFamily:'Josefbold',
-},
-modalContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-},
-modalContent: {
-    width: '80%',
-    backgroundColor: '#fff',
-    padding: 20,
-    borderRadius: 8,
-    alignItems: 'center',
-    position: 'relative',
-},
-closeButton: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    padding:10,
-    backgroundColor:'rgba(231, 124, 255, 0.49)',
-},
-modalProductImage: {
-    width: 150,
-    height: 150,
-    borderRadius: 8,
-    marginBottom: 10,
-},
-productDescription: {
-    marginVertical: 10,
-    fontSize: 14,
-    fontFamily:'Josefinreg',
-    textAlign: 'center',
-},
-addButton: {
-    flexDirection: 'row',
-    marginTop: 10,
-    paddingVertical: 10,
-    borderRadius: 5,
-    backgroundColor: '#4eacba',
-    padding: 10,
-    paddingHorizontal:30,
-},
-addButtonText: {
-    fontSize:16,
-    color: '#fff',
-    fontFamily:'Josefinreg',
-    marginRight:20,
-},
-
-quantityContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-},
-quantityButton: {
-    backgroundColor: '#ffffff',
-    borderRadius: 5,
-    padding: 13,
-    marginHorizontal: 5,
-},
-quantityButtonText: {
-    fontSize: 20,
-    color: '#333',
-},
-quantityText: {
-    fontSize: 16,
-    color: '#1c5962',
 },
 });
 
